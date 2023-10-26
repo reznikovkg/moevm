@@ -1,5 +1,7 @@
 <template>
-  <Tutorial/>
+  <div>
+    <nuxt-link to="/card-new-preview">Card</nuxt-link>
+  </div>
 </template>
 
 <script>
