@@ -1,12 +1,12 @@
 <template>
-  <div v-if="obj" class="card-new" :style="style">
-    <div class="card-new__wrapper">
-      <div class="card-new__header">
-        <span class="card-new__datetime">{{ obj.date }}</span>
-        <Badge :color="category">{{ obj.category }}</Badge> 
+  <div v-if="article" class="article-card" :style="style">
+    <div class="article-card__wrapper">
+      <div class="article-card__header">
+        <span class="article-card__datetime">{{ article.date }}</span>
+        <Badge :color="category">{{ article.category }}</Badge> 
       </div>
-      <div class="card-new__content">
-        <h3 class="card-new__title">{{ obj.title }}</h3>
+      <div class="article-card__content">
+        <h3 class="article-card__title">{{ article.title }}</h3>
       </div>
     </div>
   </div>
@@ -15,31 +15,43 @@
 <script>
 import Badge from './Badge.vue';
 
+export const CATEGORIES = {
+  ADVS: 'Объявления',
+  NEWS: 'Новости',
+}
+
 export default {
-  name: 'CardNew',
+  name: 'ArticleCard',
   components: {
     Badge
   },
   props: {
-    obj: {
+    article: {
       default: () => (null),
       type: Object
     }
   },
   computed: {
     style () {
+      if (!this.article || !this.article.cover) {
+        return {}
+      }
+
       return {
-        backgroundImage: `url(${this.obj.cover || ''})`
+        backgroundImage: `url(${this.article.cover})`
       }
     },
     category () {
-      switch (this.obj.category) {
-        case 'Объявления':
+      if (!this.article) {
+        return ''
+      }
+      switch (this.article.category) {
+        case CATEGORIES.ADVS:
           return '#0058d8'
-        case 'Новости':
+        case CATEGORIES.NEWS:
           return 'red'
         default:
-          break;
+          return ''
       }
     }
   }
@@ -49,7 +61,7 @@ export default {
 <style lang="less" scoped>
 @import (css) url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
-.card-new {
+.article-card {
   box-shadow: 4px 4px 10px 0px #d5d5d5;
   background: #bababa;
   background-size: cover;

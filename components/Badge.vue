@@ -10,7 +10,7 @@ export default {
   props: {
     color: {
       type: String,
-      default: '#0000FF'
+      default: '#999999'
     }
   },
   computed: {
