@@ -1,4 +1,4 @@
-export const state = () => ({
+const state = {
     teachers: [
         {
             uuid: "1",
@@ -19,56 +19,69 @@ export const state = () => ({
             DateModified: ""
         }
     ]
-})
-
-export const actions = {
-    async fetchTeachers({ commit }, teachers) {
-        // make request
-        commit('pushSeveralTeachers', teachers)
-    },
-    addTeachers({ commit }, payload) {
-        commit('pushSeveralTeachers', teachers)
-    },
-    addTeacher({ commit }, teacher) {
-        commit('pushOneTeacher', teacher)
-    },
-    removeTeacher({ commit }, uuid) {
-        commit('removeTeacher', uuid)
-    },
-    updateTeacher({ commit }, teacher) {
-        commit('updateTeacher', teacher)
-    }
 }
 
-export const getters = {
-    getTeachers(state) {
-        return state.teachers
-    },
-    getTeachersCount(state) {
-        return state.teachers.length
-    },
-    getNewsByFilter(state, filter) {
-        return state.teachers.filter(filter)
-    }
+const actions = {
+    fetchTeachers: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
+        //make request
+        commit('pushSeveralTeachers', payload)
+        return resolve()
+    }),
+    loadTeachers: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
+        commit('pushSeveralTeachers', payload)
+        return resolve()
+    }),
+    addTeachers: (store, payload) => new Promise((resolve, reject) => {
+        store.commit('pushSeveralTeachers', payload)
+        return resolve()
+    }),
+    addTeacher: (store, payload) => new Promise((resolve, reject) => {
+        store.commit('pushOneTeacher', payload)
+        return resolve()
+    }),
+    removeTeacher: (store, uuid) => new Promise((resolve, reject) => {
+        store.commit('removeTeacher', uuid)
+        return resolve()
+    }),
+    updateTeacher: (store, payload) => new Promise((resolve, reject) => {
+        commit('updateTeacher', payload)
+        return resolve()
+    })
 }
 
-export const mutations = {
-    pushTeacher(state, payload) {
+const getters = {
+    getTeachers: state => state.teachers,
+    getTeachersCount: state => state.teachers.length,
+    getTeachersByName: state => fullName => state.teachers.find(teacher => teacher.fullName === fullName),
+    getTeachersByUuid: state => uuid => state.teachers.find(teacher => teacher.uuid === uuid)
+    // getTeachersByFilter: state => state.teachers.filter(filter)
+}
+
+const mutations = {
+    pushTeacher: (state, payload) => {
         state.teachers = payload
     },
-    pushSeveralTeachers(state, teachers) {
+    pushSeveralTeachers: (state, teachers) => {
         state.teachers = state.teachers.concat(teachers)
     },
-    pushOneTeacher(state, teacher) {
+    pushOneTeacher: (state, teacher) => {
         state.teachers.push(teacher)
     },
-    removeTeacher(state, uuid) {
+    removeTeacher: (state, uuid) => {
         state.teachers = state.teachers.filter((teacher) => teacher.uuid !== uuid)
     },
-    updateTeacher(state, payload) {
+    updateTeacher: (state, payload) => {
         const i = state.teachers.findIndex(x => x.uuid === payload.uuid)
         if (i !== -1) {
             state.teachers.splice(i, 1, payload)
         }
     }
+}
+
+export default {
+    namespaced: true,
+    state,
+    getters,
+    mutations,
+    actions
 }

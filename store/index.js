@@ -1,7 +1,7 @@
-export const state = () => {}
+const state = () => {}
 
-export const mutations = {}
+const mutations = {}
 
-export const actions = {}
+const actions = {}
 
-export const getters = {}
+const getters = {}
