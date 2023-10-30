@@ -1,11 +1,39 @@
 const state = {
     news: [
         {
-            uuid: "2321",
+            uuid: "a420871a-e9a3-4f3f-bbfe-a5311ef6ab8f",
             title: "4vdsfsdf",
             body: "vervwevr2",
-            dateCreated: "",
-            dateModified: ""
+            dateCreated: new Date(),
+            dateModified: new Date()
+        },
+        {
+            uuid: "7b09d45e-8b68-4ffd-b32d-ddf2e11c9153",
+            title: "4vdsfsdf",
+            body: "vervwevr2",
+            dateCreated: new Date(),
+            dateModified: new Date()
+        },
+        {
+            uuid: "168ed6c2-3cb3-4340-859d-6f3dc136b860",
+            title: "4vdsfsdf",
+            body: "vervwevr2",
+            dateCreated: new Date(),
+            dateModified: new Date()
+        },
+        {
+            uuid: "80c46087-dae8-46a9-a333-10800b98bfca",
+            title: "4vdsfsdf",
+            body: "vervwevr2",
+            dateCreated: new Date(),
+            dateModified: new Date()
+        },
+        {
+            uuid: "f43c905e-4479-46a6-b266-4ddbdd5467a4",
+            title: "4vdsfsdf",
+            body: "vervwevr2",
+            dateCreated: new Date(),
+            dateModified: new Date()
         }
     ]
 }
@@ -13,10 +41,6 @@ const state = {
 const actions = {
     fetchNews: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
         // make request
-        commit('pushSeveralNews', payload)
-        return resolve()
-    }),
-    loadNews: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
         commit('pushSeveralNews', payload)
         return resolve()
     }),
