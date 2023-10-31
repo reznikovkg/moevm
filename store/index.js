@@ -1,7 +1,14 @@
-const state = () => {}
+const state = {}
+
+const getters = {}
 
 const mutations = {}
 
 const actions = {}
 
-const getters = {}
+export default {
+    state,
+    getters,
+    mutations,
+    actions
+}

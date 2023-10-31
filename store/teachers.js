@@ -232,7 +232,7 @@ const state = {
                 "Создание междисциплинарных образовательных программ в математическом моделировании и программировании для исследования актуальных проблем математики и учебного процесса (2019г.)",
                 "Создание междисциплинарных образовательных программ в математическом моделировании и программировании для исследования актуальных проблем математики и учебного процесса (2020г.)",
                 "Оказание первой помощи (2021г.)",
-                "Использование электронного обучения и дистанционных технологий в образовательной практике вуза (2021г.)", 
+                "Использование электронного обучения и дистанционных технологий в образовательной практике вуза (2021г.)",
             ],
             activities: "",
             titlesAwardsAdditionalCompetencies: "",
@@ -330,50 +330,29 @@ const state = {
     ]
 }
 
+const getters = {
+    getTeachers: state => state.teachers,
+    getTeachersCount: state => state.teachers.length,
+    getTeacherByName: state => fullName => state.teachers.find(teacher => teacher.fullName === fullName),
+    getTeacherByUuid: state => uuid => state.teachers.find(teacher => teacher.uuid === uuid),
+    getTeacherByFilter: state => ({ field, value }) => state.teacher.filter(teacher => teacher[field] === value),
+}
+
 const actions = {
     fetchTeachers: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
         //make request
-        commit('pushSeveralTeachers', payload)
-        return resolve()
-    }),
-    addTeachers: (store, payload) => new Promise((resolve, reject) => {
-        store.commit('pushSeveralTeachers', payload)
-        return resolve()
-    }),
-    addTeacher: (store, payload) => new Promise((resolve, reject) => {
-        store.commit('pushOneTeacher', payload)
-        return resolve()
-    }),
-    removeTeacher: (store, uuid) => new Promise((resolve, reject) => {
-        store.commit('removeTeacher', uuid)
+        commit('addTeacher', payload)
         return resolve()
     }),
     updateTeacher: (store, payload) => new Promise((resolve, reject) => {
-        commit('updateTeacher', payload)
+        store.commit('updateTeacher', payload)
         return resolve()
     })
 }
 
-const getters = {
-    getTeachers: state => state.teachers,
-    getTeachersCount: state => state.teachers.length,
-    getTeachersByName: state => fullName => state.teachers.find(teacher => teacher.fullName === fullName),
-    getTeachersByUuid: state => uuid => state.teachers.find(teacher => teacher.uuid === uuid)
-    // getTeachersByFilter: state => state.teachers.filter(filter)
-}
-
 const mutations = {
-    pushTeacher: (state, payload) => {
-        state.teachers = payload
-    },
-    pushSeveralTeachers: (state, teachers) => {
-        state.teachers = state.teachers.concat(teachers)
-    },
-    pushOneTeacher: (state, teacher) => {
+    addTeacher: (state, teacher) => {
         state.teachers.push(teacher)
-    },
-    removeTeacher: (state, uuid) => {
-        state.teachers = state.teachers.filter((teacher) => teacher.uuid !== uuid)
     },
     updateTeacher: (state, payload) => {
         const i = state.teachers.findIndex(x => x.uuid === payload.uuid)

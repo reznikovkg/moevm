@@ -38,22 +38,18 @@ const state = {
     ]
 }
 
+const getters = {
+    getNews: state => state.news,
+    getNewsCount: state => state.news.length,
+    getNewsByFilter: state => ({ field, value }) => state.news.filter(news => news[field] === value),
+    getNewsByUuid: state => uuid => state.news.find(news => news.uuid === uuid),
+    getNewsByTitle: state => title => state.news.find(news => news.title === title)
+}
+
 const actions = {
     fetchNews: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
         // make request
-        commit('pushSeveralNews', payload)
-        return resolve()
-    }),
-    addSeveralNews: (store, news) => new Promise((resolve, reject) => {
-        store.commit('pushSeveralNews', news)
-        return resolve()
-    }),
-    addNews: (store, payload) => new Promise((resolve, reject) => {
-        store.commit('pushOneNews', payload)
-        return resolve()
-    }),
-    removeNews: (store, uuid) => new Promise((resolve, reject) => {
-        store.commit('removeNews', uuid)
+        commit('addNews', payload)
         return resolve()
     }),
     updateNews: (store, payload) => new Promise((resolve, reject) => {
@@ -62,26 +58,9 @@ const actions = {
     })
 }
 
-const getters = {
-    getNews: state => state.news,
-    getNewsCount: state => state.news.length,
-    // getNewsByFilter: state => filter => state.news.filter(filter),
-    getNewsByUuid: state => uuid => state.news.find(news => news.uuid === uuid),
-    getNewsByTitle: state => title => state.news.find(news => news.title === title)
-}
-
 const mutations = {
-    pushNews: (state, payload) => {
-        state.news = payload
-    },
-    pushOneNews: (state, payload) => {
+    addNews: (state, payload) => {
         state.news.push(payload)
-    },
-    pushSeveralNews: (state, payload) => {
-        state.news = state.news.concat(payload)
-    },
-    removeNews: (state, uuid) => {
-        state.news = state.news.filter((news) => news.uuid !== uuid)
     },
     updateNews: (state, payload) => {
         const i = state.news.findIndex(x => x.uuid === payload.uuid)
