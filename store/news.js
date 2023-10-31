@@ -46,18 +46,6 @@ const getters = {
     getNewsByTitle: state => title => state.news.find(news => news.title === title)
 }
 
-const actions = {
-    fetchNews: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
-        // make request
-        commit('addNews', payload)
-        return resolve()
-    }),
-    updateNews: (store, payload) => new Promise((resolve, reject) => {
-        store.commit('updateNews', payload)
-        return resolve()
-    })
-}
-
 const mutations = {
     addNews: (state, payload) => {
         state.news.push(payload)
@@ -68,6 +56,18 @@ const mutations = {
             state.news.splice(i, 1, payload)
         }
     }
+}
+
+const actions = {
+    fetchNews: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
+        // make request
+        commit('addNews', payload)
+        return resolve()
+    }),
+    updateNews: (store, payload) => new Promise((resolve, reject) => {
+        store.commit('updateNews', payload)
+        return resolve()
+    })
 }
 
 export default {

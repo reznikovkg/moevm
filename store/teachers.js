@@ -338,18 +338,6 @@ const getters = {
     getTeacherByFilter: state => ({ field, value }) => state.teacher.filter(teacher => teacher[field] === value),
 }
 
-const actions = {
-    fetchTeachers: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
-        //make request
-        commit('addTeacher', payload)
-        return resolve()
-    }),
-    updateTeacher: (store, payload) => new Promise((resolve, reject) => {
-        store.commit('updateTeacher', payload)
-        return resolve()
-    })
-}
-
 const mutations = {
     addTeacher: (state, teacher) => {
         state.teachers.push(teacher)
@@ -360,6 +348,18 @@ const mutations = {
             state.teachers.splice(i, 1, payload)
         }
     }
+}
+
+const actions = {
+    fetchTeachers: ({ commit, dispatch }, payload) => new Promise((resolve, reject) => {
+        //make request
+        commit('addTeacher', payload)
+        return resolve()
+    }),
+    updateTeacher: (store, payload) => new Promise((resolve, reject) => {
+        store.commit('updateTeacher', payload)
+        return resolve()
+    })
 }
 
 export default {
