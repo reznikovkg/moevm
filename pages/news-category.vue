@@ -4,13 +4,13 @@
 
 <script>
 export default {
-  name: "news-category",
-  head() {
-    return { title: "Категории новостей" };
+  name: "NewsCategoryPage",
+  head () {
+    return { title: "Категории новостей" }
   },
   computed: {
-    pageTitle() {
-      return this.$options.head().title;
+    pageTitle () {
+      return this.$options.head().title
     },
   }
 }

@@ -3,7 +3,7 @@
     <h2>Список страниц:</h2>
     <ul>
       <li v-for="page in pages" :key="page.name">
-        <nuxt-link :to="`/${page.name}`">{{ page.name }}</nuxt-link>
+        <nuxt-link :to="{ name: page.name }">{{ page.name }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -13,10 +13,10 @@
 export default {
   name: 'IndexPage',
   computed: {
-    pages() {
+    pages () {
       return this.$router.options.routes
         .filter((route) => route.path !== "/")
-        .map((route) => ({ name: route.name }));
+        .map((route) => ({ name: route.name }))
     },
   },
 }

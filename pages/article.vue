@@ -4,13 +4,13 @@
 
 <script>
 export default {
-  name: "article",
-  head() {
-    return { title: "Новость" };
+  name: "ArticlePage",
+  head () {
+    return { title: "Новость" }
   },
   computed: {
-    pageTitle() {
-      return this.$options.head().title;
+    pageTitle () {
+      return this.$options.head().title
     },
   }
 }
