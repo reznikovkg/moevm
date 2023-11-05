@@ -6,6 +6,7 @@
         <nuxt-link :to="{ name: page.name }">{{ page.name }}</nuxt-link>
       </li>
     </ul>
+    <nuxt-link to="/card-new-preview">Card</nuxt-link>
   </div>
 </template>
 

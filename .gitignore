@@ -8,6 +8,9 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+#Visual Studio Code
+.vscode
+
 # Runtime data
 pids
 *.pid
