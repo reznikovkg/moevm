@@ -1,11 +1,13 @@
 <template>
   <div>
-    <nuxt-link to="/card-new-preview">Card</nuxt-link>
+    <HeaderComp />
+    <!-- <nuxt-link to="/card-new-preview">Card</nuxt-link> -->
   </div>
 </template>
 
 <script>
+import HeaderComp from '../components/Header.vue';
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
 }
 </script>
