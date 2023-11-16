@@ -3,7 +3,7 @@
     <div class="article-card__wrapper">
       <div class="article-card__header">
         <span class="article-card__datetime">{{ article.date }}</span>
-        <Badge :color="category">{{ article.category }}</Badge> 
+        <Badge :color="category">{{ article.category }}</Badge>
       </div>
       <div class="article-card__content">
         <h3 class="article-card__title">{{ article.title }}</h3>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Badge from './Badge.vue';
+import Badge from '@/components/Badge.vue';
 
 export const CATEGORIES = {
   ADVS: 'Объявления',
