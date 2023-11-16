@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ArticleCard, { CATEGORIES } from '../components/ArticleCard.vue';
+import ArticleCard, { CATEGORIES } from '@/components/ArticleCard.vue';
 
 export default {
   name: 'CardNewPreviewPage',

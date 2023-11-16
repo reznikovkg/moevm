@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+    nuxt:
+        build: ./
+        ports:
+            - "9999:3000"
+        volumes:
+            - ./components:/app/components
+            - ./assets:/app/assets
+            - ./store:/app/store
+            - ./static:/app/static
+            - ./nuxt.config.js:/nuxt.config.js
