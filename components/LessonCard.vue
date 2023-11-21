@@ -1,5 +1,5 @@
 <template>
-  <div class="lesson">
+  <div :style="styleLesson" class="lesson">
     <span>{{ lesson.name }}</span>
     <span>{{ lesson.classroom }}</span>
     <span>{{ lesson.teacher.surname }}</span>
@@ -12,7 +12,14 @@ export default {
   props: {
     lesson: {
       type: Object,
-      default: null
+      default: () => null
+    }
+  },
+  computed: {
+    styleLesson () {
+      return {
+        backgroundColor: `${this.lesson.color}`
+      }
     }
   }
 }
@@ -20,7 +27,10 @@ export default {
 
 <style scoped lang="less">
 .lesson {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>

@@ -5,6 +5,7 @@
       <div>
         <LessonCard v-if="onlyNumeratorLesson" :lesson="onlyNumeratorLesson"/>
       </div>
+      <div class="day__split__divider"/>
       <div>
         <LessonCard v-if="onlyDenominatorLesson" :lesson="onlyDenominatorLesson"/>
       </div>
@@ -31,6 +32,7 @@ export default {
       return this.lessons.find((lesson) => lesson.everyWeek)
     },
     onlyNumeratorLesson () {
+      console.log(this.lessons.find((lesson) => lesson.onlyNumerator))
       return this.lessons.find((lesson) => lesson.onlyNumerator)
     },
     onlyDenominatorLesson () {
@@ -46,9 +48,14 @@ export default {
   flex-direction: column;
 
   &__split {
+    height: 100%;
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1fr 1px 1fr;
     grid-template-columns: auto;
+
+    &__divider {
+      background-color: black;
+    }
   }
 }
 </style>

@@ -12,6 +12,7 @@
         <DayCard
           :lessons="lessons(dayOfWeek, time)"
           :style="styleGridPosition(timeIndex, dayIndex)"
+          class="schedule__day-card"
         />
       </template>
     </template>
@@ -29,7 +30,47 @@ export default {
   props: {
     schedule: {
       type: Array,
-      default: () => []
+      default: () => [
+        {
+          everyWeek: true,
+          onlyNumerator: false,
+          onlyDenominator: false,
+          time: "8:00",
+          day: "Понедельник",
+          name: "Матеша",
+          classroom: 512,
+          teacher: {
+            surname: "Иванов"
+          },
+          color: "yellow"
+        },
+        {
+          everyWeek: false,
+          onlyNumerator: true,
+          onlyDenominator: false,
+          time: "9:45",
+          day: "Вторник",
+          name: "Матеша",
+          classroom: 12,
+          teacher: {
+            surname: "Иванова"
+          },
+          color: "green"
+        },
+        {
+          everyWeek: false,
+          onlyNumerator: false,
+          onlyDenominator: true,
+          time: "13:25",
+          day: "Среда",
+          name: "Физика",
+          classroom: 212,
+          teacher: {
+            surname: "Иванова"
+          },
+          color: "green"
+        }
+      ]
     }
   },
   computed: {
@@ -53,9 +94,7 @@ export default {
   },
   methods: {
     lessons (dayOfWeek, time) {
-      return this.schedule.filter((lesson) => {
-        return lesson.day == dayOfWeek && lesson.time == time
-      })
+      return this.schedule.filter((lesson) => lesson.day == dayOfWeek && lesson.time == time)
     },
     styleGridPosition (raw, column) {
       const rawStart = raw + 2
@@ -64,8 +103,7 @@ export default {
       const columnEnd = columnStart + 1
       return {
         gridColumn: `${columnStart} / ${columnEnd}`,
-        gridRow: `${rawStart} / ${rawEnd}`,
-        backgroundColor: `red`
+        gridRow: `${rawStart} / ${rawEnd}`
       }
     }
   }
@@ -77,7 +115,6 @@ export default {
   display: grid;
   grid-template-columns: auto repeat(6, 1fr);
   grid-template-rows: auto repeat(7, 1fr);
-  gap: 2px;
 
   &__empty-item {
     grid-row: 1 / 2;
@@ -85,10 +122,26 @@ export default {
 
   &__day-of-week {
     grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
   }
 
   &__time {
     grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+  }
+
+  &__day-card {
+    height: 100%;
+  }
+
+  & > * {
+    border: 1px solid black;
   }
 }
 </style>
