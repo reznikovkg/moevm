@@ -5,7 +5,6 @@
       <div>
         <LessonCard v-if="onlyNumeratorLesson" :lesson="onlyNumeratorLesson"/>
       </div>
-      <div class="day__split__divider"/>
       <div>
         <LessonCard v-if="onlyDenominatorLesson" :lesson="onlyDenominatorLesson"/>
       </div>
@@ -50,11 +49,11 @@ export default {
   &__split {
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1px 1fr;
+    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: auto;
 
-    &__divider {
-      background-color: black;
+    & > *:first-child {
+      border-bottom: 1px dashed lightgray;
     }
   }
 }
