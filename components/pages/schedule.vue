@@ -21,17 +21,12 @@
 
 <script>
 import DayCard from "../DayCard.vue"
+import { mapGetters } from "vuex"
 
 export default {
   name: "SchedulePage",
   components: {
     DayCard
-  },
-  props: {
-    schedule: {
-      type: Array,
-      default: () => []
-    }
   },
   computed: {
     daysOfWeek: () => [
@@ -51,6 +46,14 @@ export default {
       "16:55",
       "18:40"
     ]
+  },
+  computed: {
+    ...mapGetters('schedule', [
+      "getSchedule"
+    ]),
+    schedule () {
+      return this.getSchedule
+    }
   },
   methods: {
     lessons (dayOfWeek, time) {
