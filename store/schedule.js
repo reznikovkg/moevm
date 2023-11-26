@@ -51,6 +51,42 @@ const state = {
         surname: "Иванова"
       },
       color: "lightblue"
+    },
+    {
+      everyWeek: true,
+      onlyNumerator: false,
+      onlyDenominator: false,
+      time: "8:00",
+      day: "Пятница",
+      name: "Матеша",
+      classroom: 512,
+      teacher: {
+        surname: "Иванов"
+      }
+    },
+    {
+      everyWeek: false,
+      onlyNumerator: true,
+      onlyDenominator: false,
+      time: "11:30",
+      day: "Пятница",
+      name: "Матеша",
+      classroom: 512,
+      teacher: {
+        surname: "Иванов"
+      }
+    },
+    {
+      everyWeek: false,
+      onlyNumerator: false,
+      onlyDenominator: true,
+      time: "11:30",
+      day: "Пятница",
+      name: "Матеша",
+      classroom: 512,
+      teacher: {
+        surname: "Иванов"
+      }
     }
   ]
 }
