@@ -52,7 +52,7 @@ export default {
     grid-template-columns: auto;
 
     & > *:first-child {
-      border-bottom: 1px dashed lightgray;
+      border-bottom: 1px dashed #d2d3d3;
     }
   }
 }
