@@ -59,8 +59,18 @@ const getters = {
   getSchedule: state => state.schedule
 }
 
+const mutations = {
+  setSchedule (state, payload) {
+    state.schedule = payload
+  }
+}
+
+const actions = {}
+
 export default {
   namespaced: true,
   state,
-  getters
+  getters,
+  mutations,
+  actions
 }
