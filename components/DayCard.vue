@@ -2,10 +2,10 @@
   <div class="day">
     <LessonCard v-if="everyWeekLesson" :lesson="everyWeekLesson"/>
     <div v-else class="day__split">
-      <div>
+      <div class="day__split__lesson-container">
         <LessonCard v-if="onlyNumeratorLesson" :lesson="onlyNumeratorLesson"/>
       </div>
-      <div>
+      <div class="day__split__lesson-container">
         <LessonCard v-if="onlyDenominatorLesson" :lesson="onlyDenominatorLesson"/>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: auto;
 
-    & > *:first-child {
+    &__lesson-container:first-child {
       border-bottom: 1px dashed #d2d3d3;
     }
   }
