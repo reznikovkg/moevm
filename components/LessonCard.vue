@@ -10,10 +10,7 @@
 export default {
   name: "LessonCard",
   props: {
-    lesson: {
-      type: Object,
-      default: () => null
-    }
+    lesson: Object
   },
   computed: {
     styleLesson () {
