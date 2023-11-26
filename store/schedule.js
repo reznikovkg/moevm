@@ -11,7 +11,7 @@ const state = {
       teacher: {
         surname: "Иванов"
       },
-      color: "yellow"
+      color: "lightyellow"
     },
     {
       everyWeek: false,
@@ -24,7 +24,7 @@ const state = {
       teacher: {
         surname: "Иванова"
       },
-      color: "green"
+      color: "lightgreen"
     },
     {
       everyWeek: false,
@@ -37,7 +37,20 @@ const state = {
       teacher: {
         surname: "Иванова"
       },
-      color: "green"
+      color: "lightgreen"
+    },
+    {
+      everyWeek: false,
+      onlyNumerator: true,
+      onlyDenominator: false,
+      time: "13:25",
+      day: "Среда",
+      name: "Занятие",
+      classroom: 11,
+      teacher: {
+        surname: "Иванова"
+      },
+      color: "lightblue"
     }
   ]
 }
