@@ -31,7 +31,6 @@ export default {
       return this.lessons.find((lesson) => lesson.everyWeek)
     },
     onlyNumeratorLesson () {
-      console.log(this.lessons.find((lesson) => lesson.onlyNumerator))
       return this.lessons.find((lesson) => lesson.onlyNumerator)
     },
     onlyDenominatorLesson () {
