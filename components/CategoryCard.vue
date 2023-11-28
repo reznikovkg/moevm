@@ -1,11 +1,30 @@
 <template>
-    <div v-if="category" class="category-card">
+    <div v-if="category" class="category-card" @click="openList()"
+        :style="{ 'background-blend-mode': clicked ? 'lighten' : 'normal' }">
         <div class="category-card__wrapper">
-            <!-- <div class="category-card__header">
-                <Badge :color="category">{{ category.category }}</Badge>
-            </div> -->
+            <div class="category-card__header" :style="{ height: expanded ? '70px' : null }">
+                <h3 class=" category-card__title">{{ category.title }}</h3>
+            </div>
             <div class="category-card__content">
-                <h3 class="category-card__title">{{ category.title }}</h3>
+                <div class="category-card__list">
+                    <span v-if="clicked">
+
+                        <ul>
+                            <li>
+                                <nuxt-link :to="{}">{{ "Пункт1" }}</nuxt-link>
+                            </li>
+                            <li>
+                                <nuxt-link :to="{}">{{ "Пункт2" }}</nuxt-link>
+                            </li>
+                            <li>
+                                <nuxt-link :to="{}">{{ "Пункт3" }}</nuxt-link>
+                            </li>
+                            <li>
+                                <nuxt-link :to="{}">{{ "Пункт4" }}</nuxt-link>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -14,10 +33,36 @@
 <script>
 export default {
     name: 'CategoryCard',
+    data() {
+        return {
+            clicked: false,
+            ReferencesList: [
+                "Пункт 1",
+                "Пункт 2",
+                "Пункт 3",
+                "Пункт 4",
+                "Пункт 5"
+            ]
+        }
+    },
+    methods: {
+        openList() {
+            this.clicked = !this.clicked
+            if (this.$colorMode.preference === 'gray') {
+                this.$colorMode.preference = 'light'
+            } else {
+                this.$colorMode.preference = 'gray'
+            }
+        }
+    },
     props: {
         category: {
             default: () => (null),
             type: Object
+        },
+        expanded: {
+            default: false,
+            type: Boolean
         }
     },
 }
@@ -25,19 +70,37 @@ export default {
 
 <style lang="less" scoped>
 .category-card {
-    background: #bababa;
-    background-size: cover;
-    color: white;
-    background-position: center;
-    background-image: url('https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg');
+
+    width: 100%;
 
     &__wrapper {
-        // width: 30px;
-        // height: 40px;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
     }
 
-    &__content {
+    &__header {
         text-align: center;
+        align-items: center;
+        background: #bababa;
+        background-size: cover;
+        background-position: center;
+        background-image: url('https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg');
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    // &__list {}
+
+    // &__content {
+    //     // text-align: center;
+    // }
+
+    &__title {
+        margin: 0;
+        color: white;
     }
 }
 </style>
