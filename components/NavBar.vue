@@ -2,18 +2,18 @@
   <nav class="navigation">
     <div class="top">
       <div class="title">
-        <img src="@/assets/computer.png" class="logo" />
+        <img src="@/assets/pictures/computer.png" class="logo" />
         <h3>Кафедра Математического обеспечения ЭВМ </h3>
       </div>
       <div class="icons">
         <input v-model="value" type="search" autocomplete="off" placeholder="Введите" class="form" />
         <span v-if="$colorMode.value === 'gray'">
-          <img src="@/assets/search-light.svg" class="items-dark" />
-          <img src="@/assets/menu-light.svg" class="items-dark" />
+          <img src="@/assets/pictures/search-light.svg" class="items-dark" />
+          <img src="@/assets/pictures/menu-light.svg" class="items-dark" />
         </span>
         <span v-else>
-          <img src="@/assets/search-dark.svg" class="items-light" />
-          <img src="@/assets/menu-dark.svg" class="items-light" />
+          <img src="@/assets/pictures/search-dark.svg" class="items-light" />
+          <img src="@/assets/pictures/menu-dark.svg" class="items-light" />
         </span>
       </div>
     </div>
@@ -28,7 +28,6 @@
   
 <script>
 import CategoryCard from '@/components/CategoryCard.vue';
-// const value = ref('')
 export default {
   name: "NavigationBar",
   props: {
@@ -71,20 +70,16 @@ export default {
 }
 
 .wide {
-  // height: 81px;
+
   margin-bottom: -28px;
 }
 
 .items-dark {
-  // max-height: 40px;
   height: 40px;
-  // min-height: 40px;  
 }
 
 .items-light {
-  // max-height: 40px;
   height: 40px;
-  // min-height: 40px;  
 }
 
 .navigation {
@@ -94,17 +89,11 @@ export default {
 
 .lower {
   margin: 0 auto;
-  // padding: 20px;
-  // flex-grow: 1;
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
   gap: 5px;
-
-  // &__card {
-  //   height: 100px;
-  // }
 }
 
 .top {
@@ -112,13 +101,6 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
-// .card-stl {
-//   display: flex;
-//   justify-content: center;
-//   flex-grow: 1;
-//   // max-height: 25px;
-// }
 
 .title {
   display: flex;

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Badge from './Badge.vue';
+import Badge from '@/components/Badge.vue';
 
 export const CATEGORIES = {
   ADVS: 'Объявления',

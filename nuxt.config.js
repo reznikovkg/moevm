@@ -1,5 +1,10 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  server: {
+    protocol: 'ws',
+    host: "0.0.0.0",
+    port: 3000
+  },
   head: {
     title: 'pr-nuxt',
     htmlAttrs: {
@@ -16,12 +21,27 @@ export default {
     ]
   },
 
+  target: 'static',
+
+  dir: {
+    pages: 'components/pages',
+    layouts: 'components/layouts',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/static/fonts.less',
-    '@/assets/color-modes.less'
+    '@/assets/less/fonts.less',
+    '@/assets/less/color-modes.less',
+    '@/assets/less/common.less'
   ],
+
   colorMode: { preference: 'light' },
+
+  styleResources: {
+    less: [
+      './assets/less/const.less',
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -35,8 +55,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/color-mode', '@nuxtjs/svg'],
-
+  modules: [
+    '@nuxtjs/color-mode',
+    '@nuxtjs/svg',
+    '@nuxtjs/style-resources'
+  ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

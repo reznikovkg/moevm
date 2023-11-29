@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "HeaderComp",
+  name: "Header",
   props: {
     title: {
       type: String,

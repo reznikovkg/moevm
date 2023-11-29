@@ -8,21 +8,9 @@
             <div class="category-card__content">
                 <div class="category-card__list">
                     <span v-if="clicked">
-
-                        <ul>
-                            <li>
-                                <nuxt-link :to="{}">{{ "Пункт1" }}</nuxt-link>
-                            </li>
-                            <li>
-                                <nuxt-link :to="{}">{{ "Пункт2" }}</nuxt-link>
-                            </li>
-                            <li>
-                                <nuxt-link :to="{}">{{ "Пункт3" }}</nuxt-link>
-                            </li>
-                            <li>
-                                <nuxt-link :to="{}">{{ "Пункт4" }}</nuxt-link>
-                            </li>
-                        </ul>
+                        <li v-for="(item, index) in mockData" :key="index">
+                            {{ item }}
+                        </li>
                     </span>
                 </div>
             </div>
@@ -36,7 +24,7 @@ export default {
     data() {
         return {
             clicked: false,
-            ReferencesList: [
+            mockData: [
                 "Пункт 1",
                 "Пункт 2",
                 "Пункт 3",
@@ -76,7 +64,6 @@ export default {
     &__wrapper {
         display: flex;
         flex-direction: column;
-        // align-items: center;
     }
 
     &__header {
