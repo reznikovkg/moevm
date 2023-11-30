@@ -1,11 +1,11 @@
 <template>
-  <div class="day">
+  <div class="day-card">
     <LessonCard v-if="everyWeekLesson" :lesson="everyWeekLesson"/>
-    <div v-else class="day__split">
-      <div class="day__split__lesson-container">
+    <div v-else class="day-card__split">
+      <div class="day-card__split__lesson-container">
         <LessonCard v-if="onlyNumeratorLesson" :lesson="onlyNumeratorLesson"/>
       </div>
-      <div class="day__split__lesson-container">
+      <div class="day-card__split__lesson-container">
         <LessonCard v-if="onlyDenominatorLesson" :lesson="onlyDenominatorLesson"/>
       </div>
     </div>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.day {
+.day-card {
   display: flex;
   flex-direction: column;
 

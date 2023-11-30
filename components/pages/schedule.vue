@@ -18,7 +18,7 @@
           :time="time"
           :schedule="schedule"
           :style="styleGridPosition(timeIndex, dayIndex)"
-          class="schedule__day-card schedule__slot"
+          class="schedule__slot"
         />
       </template>
     </template>
@@ -107,10 +107,6 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 8px 10px;
-  }
-
-  &__day-card {
-    height: 100%;
   }
 }
 </style>
