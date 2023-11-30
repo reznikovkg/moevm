@@ -1,5 +1,5 @@
 <template>
-  <div class="day-card">
+  <div class="day-card" :style="styleGridPosition">
     <LessonCard v-if="everyWeekLesson" :lesson="everyWeekLesson"/>
     <div v-else class="day-card__split">
       <div class="day-card__split__lesson-container">
@@ -23,6 +23,8 @@ export default {
   props: {
     day: String,
     time: String,
+    rawIndex: Number,
+    columnIndex: Number,
     schedule: {
       type: Array,
       default: () => []
@@ -42,6 +44,16 @@ export default {
     },
     onlyDenominatorLesson () {
       return this.lessons.find((lesson) => lesson.onlyDenominator)
+    },
+    styleGridPosition () {
+      const rawStart = this.rawIndex + 2
+      const rawEnd = rawStart + 1
+      const columnStart = this.columnIndex + 2
+      const columnEnd = columnStart + 1
+      return {
+        gridColumn: `${columnStart} / ${columnEnd}`,
+        gridRow: `${rawStart} / ${rawEnd}`
+      }
     }
   }
 }

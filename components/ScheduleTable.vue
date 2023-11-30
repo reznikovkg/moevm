@@ -16,8 +16,9 @@
         <DayCard
           :day="dayOfWeek"
           :time="time"
+          :rawIndex="timeIndex"
+          :columnIndex="dayIndex"
           :schedule="schedule"
-          :style="styleGridPosition(timeIndex, dayIndex)"
           class="schedule__slot"
         />
       </template>
@@ -60,18 +61,6 @@ export default {
         "16:55",
         "18:40"
       ]
-    }
-  },
-  methods: {
-    styleGridPosition (raw, column) {
-      const rawStart = raw + 2
-      const rawEnd = rawStart + 1
-      const columnStart = column + 2
-      const columnEnd = columnStart + 1
-      return {
-        gridColumn: `${columnStart} / ${columnEnd}`,
-        gridRow: `${rawStart} / ${rawEnd}`
-      }
     }
   }
 }
