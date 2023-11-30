@@ -2,8 +2,9 @@
   <div class="schedule">
     <div class="schedule__empty-slot schedule__slot"/>
     <div
-      v-for="dayOfWeek in daysOfWeek"
+      v-for="(dayOfWeek, index) in daysOfWeek"
       class="schedule__day-of-week schedule__slot"
+      :key="index"
     >
       <span>{{ dayOfWeek }}</span>
     </div>
@@ -13,7 +14,9 @@
     <template v-for="(time, timeIndex) in times">
       <template v-for="(dayOfWeek, dayIndex) in daysOfWeek">
         <DayCard
-          :lessons="lessons(dayOfWeek, time)"
+          :day="dayOfWeek"
+          :time="time"
+          :schedule="schedule"
           :style="styleGridPosition(timeIndex, dayIndex)"
           class="schedule__day-card schedule__slot"
         />
@@ -32,12 +35,9 @@ export default {
     DayCard
   },
   computed: {
-    ...mapGetters('schedule', [
-      "getSchedule"
-    ]),
-    schedule () {
-      return this.getSchedule
-    },
+    ...mapGetters('schedule', {
+      schedule: "getSchedule"
+    }),
     daysOfWeek () {
       return [
         "Понедельник",
@@ -61,9 +61,6 @@ export default {
     }
   },
   methods: {
-    lessons (dayOfWeek, time) {
-      return this.schedule.filter((lesson) => lesson.day == dayOfWeek && lesson.time == time)
-    },
     styleGridPosition (raw, column) {
       const rawStart = raw + 2
       const rawEnd = rawStart + 1

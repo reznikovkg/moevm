@@ -21,12 +21,19 @@ export default {
     LessonCard
   },
   props: {
-    lessons: {
+    day: String,
+    time: String,
+    schedule: {
       type: Array,
       default: () => []
     }
   },
   computed: {
+    lessons () {
+      return this.schedule.filter(
+        (lesson) => lesson.day === this.day && lesson.time === this.time
+      )
+    },
     everyWeekLesson () {
       return this.lessons.find((lesson) => lesson.everyWeek)
     },
