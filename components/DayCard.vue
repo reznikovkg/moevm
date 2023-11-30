@@ -49,9 +49,6 @@ export default {
 
 <style scoped lang="less">
 .day-card {
-  display: flex;
-  flex-direction: column;
-
   &__split {
     height: 100%;
     display: grid;
