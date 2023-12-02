@@ -67,6 +67,8 @@ export default {
 
 <style scoped lang="less">
 .day-card {
+  background-color: #ffffff;
+
   &__split {
     height: 100%;
     display: grid;

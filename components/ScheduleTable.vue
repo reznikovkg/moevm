@@ -19,7 +19,6 @@
           :rawIndex="timeIndex"
           :columnIndex="dayIndex"
           :schedule="schedule"
-          class="schedule__slot"
         />
       </template>
     </template>
