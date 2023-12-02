@@ -56,6 +56,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // убрать
     '@nuxtjs/color-mode',
     '@nuxtjs/svg',
     '@nuxtjs/style-resources'

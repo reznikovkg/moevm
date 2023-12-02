@@ -3,7 +3,9 @@
         :style="{ 'background-blend-mode': clicked ? 'lighten' : 'normal' }">
         <div class="category-card__wrapper">
             <div class="category-card__header" :style="{ height: expanded ? '70px' : null }">
-                <h3 class=" category-card__title">{{ category.title }}</h3>
+                <h3 class=" category-card__title">
+                    {{ category.title }}
+                </h3>
             </div>
             <div class="category-card__content">
                 <div class="category-card__list">
@@ -11,6 +13,7 @@
                         <li v-for="(item, index) in mockData" :key="index">
                             {{ item }}
                         </li>
+                        <!-- nuxtlink  объект лейбл имя роута -->
                     </span>
                 </div>
             </div>
@@ -24,6 +27,7 @@ export default {
     data() {
         return {
             clicked: false,
+            // from props
             mockData: [
                 "Пункт 1",
                 "Пункт 2",
@@ -44,6 +48,10 @@ export default {
         }
     },
     props: {
+        items: {
+            default: false,
+            type: Boolean
+        },
         category: {
             default: () => (null),
             type: Object
