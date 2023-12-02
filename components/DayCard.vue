@@ -21,10 +21,22 @@ export default {
     LessonCard
   },
   props: {
-    day: String,
-    time: String,
-    rawIndex: Number,
-    columnIndex: Number,
+    day: {
+      type: String,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
+    rawIndex: {
+      type: Number,
+      required: true,
+    },
+    columnIndex: {
+      type: Number,
+      required: true,
+    },
     schedule: {
       type: Array,
       default: () => []
