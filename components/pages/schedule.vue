@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import ScheduleTable from "../ScheduleTable.vue";
 import { mapGetters } from "vuex"
+import ScheduleTable from "../ScheduleTable.vue";
 
 export default {
   name: "SchedulePage",

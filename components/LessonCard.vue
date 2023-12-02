@@ -10,7 +10,10 @@
 export default {
   name: "LessonCard",
   props: {
-    lesson: Object
+    lesson: {
+      type: Object,
+      required: true
+    }
   },
   computed: {
     defaultColor () {
@@ -27,7 +30,7 @@ export default {
     },
     styleLesson () {
       return {
-        backgroundColor: `${this.lesson.color || this.defaultColor}`
+        backgroundColor: this.lesson.color || this.defaultColor
       }
     }
   }
