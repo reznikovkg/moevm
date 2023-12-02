@@ -32,24 +32,16 @@ export default {
   },
   computed: {
     lessons () {
-      return this.schedule.filter((lesson) => {
-          return lesson.day === this.day && lesson.time === this.time
-      })
+      return this.schedule.filter((lesson) => (lesson.day === this.day && lesson.time === this.time))
     },
     everyWeekLesson () {
-      return this.lessons.find((lesson) => {
-        return lesson.everyWeek
-      })
+      return this.lessons.find((lesson) => (lesson.everyWeek))
     },
     onlyNumeratorLesson () {
-      return this.lessons.find((lesson) => {
-        return lesson.onlyNumerator
-      })
+      return this.lessons.find((lesson) => (lesson.onlyNumerator))
     },
     onlyDenominatorLesson () {
-      return this.lessons.find((lesson) => {
-        return lesson.onlyDenominator
-      })
+      return this.lessons.find((lesson) => (lesson.onlyDenominator))
     },
     styleGridPosition () {
       const rawStart = this.rawIndex + 2
