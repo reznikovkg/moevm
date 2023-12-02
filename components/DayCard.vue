@@ -2,7 +2,7 @@
   <div class="day-card" :style="styleGridPosition">
     <LessonCard v-if="everyWeekLesson" :lesson="everyWeekLesson"/>
     <div v-else class="day-card__split">
-      <div class="day-card__split--top">
+      <div class="day-card__split__lesson-by-numerator">
         <LessonCard v-if="onlyNumeratorLesson" :lesson="onlyNumeratorLesson"/>
       </div>
       <div>
@@ -67,7 +67,7 @@ export default {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: auto;
 
-    &--top {
+    &__lesson-by-numerator {
       border-bottom: 1px dashed #d2d3d3;
     }
   }
