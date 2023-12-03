@@ -31,11 +31,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/less/fonts.less',
-    '@/assets/less/color-modes.less',
     '@/assets/less/common.less'
   ],
-
-  colorMode: { preference: 'light' },
 
   styleResources: {
     less: [
@@ -56,8 +53,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // убрать
-    '@nuxtjs/color-mode',
     '@nuxtjs/svg',
     '@nuxtjs/style-resources'
   ],

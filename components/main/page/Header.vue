@@ -1,24 +1,46 @@
 <template>
   <header class="header">
-    <div class="top">
+    <div class="header__line">
       {{ title }}
     </div>
-    <div class="middle main-container">
-      <div class="title">
-        <img src="@/assets/pictures/computer.png" class="logo" />
-        <h3>Кафедра Математического обеспечения ЭВМ </h3>
+    <div class="header__icons main-container">
+      <div class="header__title">
+        <img src="@/assets/pictures/computer.png" class="header__logo" />
+        <h3 class="header__text">Кафедра Математического обеспечения ЭВМ</h3>
       </div>
-      <div class="icons">
-        <input v-model="value" type="search" autocomplete="off" placeholder="Введите" class="form" />
+      <div class="header__buttons">
+        <input 
+        v-model="value" 
+        type="search" 
+        autocomplete="off"
+        placeholder="Введите"
+        class="header__form"
+        />
         <IconSearch :style="style('search')" />
-        <IconMenu :style="style('menu')" />
+        <IconMenu :style="style('menu')" @click="() => openList()" />
       </div>
     </div>
-    <div class="lower main-container" :class="{ wide: clicked }" @click="OpenList">
-      <CategoryCard :category="{ title: 'Наука' }" :class="{ wide: clicked }" :expanded=this.clicked />
-      <CategoryCard :category="{ title: 'Образование' }" :class="{ wide: clicked }" :expanded=this.clicked />
-      <CategoryCard :category="{ title: 'Структура' }" :class="{ wide: clicked }" :expanded=this.clicked />
-      <CategoryCard :category="{ title: 'Прочее' }" :class="{ wide: clicked }" :expanded=this.clicked />
+    <div class="header__cards main-container">
+      <CategoryCard
+        :category="{ title: 'Наука', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :class="{ 'header__category-card--wide': clicked }"
+        :expanded="clicked"
+        />
+      <CategoryCard
+        :category="{ title: 'Образование', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :class="{ 'header__category-card--wide': clicked }"
+        :expanded="clicked"
+        />
+      <CategoryCard
+        :category="{ title: 'Структура', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :class="{ 'header__category-card--wide': clicked }"
+        :expanded="clicked"
+        />
+      <CategoryCard
+        :category="{ title: 'Прочее', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :class="{ 'header__category-card--wide': clicked }"
+        :expanded="clicked"
+        />
     </div>
   </header>
 </template>
@@ -29,7 +51,18 @@ import IconSearch from '@/assets/pictures/search.svg?inline'
 import IconMenu from '@/assets/pictures/menu.svg?inline'
 
 export default {
-  name: "NavigationBar",
+  name: "Header",
+  components: {
+    CategoryCard,
+    IconSearch,
+    IconMenu
+  },
+  data() {
+    return {
+      clicked: false,
+      title: 'Главная'
+    };
+  },
   props: {
     value: {
       type: String,
@@ -37,17 +70,8 @@ export default {
     }
   },
   methods: {
-    OpenList() {
-      this.clicked = !this.clicked;
-      if (this.title === 'Главная') {
-        this.title = 'Меню'
-      }
-      else {
-        this.title = 'Главная'
-      }
-    },
     style(type) {
-      if (this.$colorMode.value === 'gray') {
+      if (this.$store.state.globalTempVars.theme === "gray") {
         if (type === 'menu') {
           return { fill: 'white' }
         }
@@ -63,81 +87,84 @@ export default {
           return { stroke: 'black' }
         }
       }
+    },
+    openList() {
+      this.clicked = !this.clicked
+      if (this.title === 'Главная') {
+        this.title = 'Меню'
+        document.body.style.color = '#ebf4f1'
+        document.body.style.backgroundColor = '#5e5f61'
+        this.$store.commit('globalTempVars/updateTheme', 'gray')
+      }
+      else {
+        this.title = 'Главная'
+        document.body.style.color = '#243746'
+        document.body.style.backgroundColor = '#f3f5f4'
+        this.$store.commit('globalTempVars/updateTheme', 'light')
+      }
     }
-  },
-  data() {
-    return {
-      clicked: false,
-      title: 'Главная'
-    };
-  },
-  components: {
-    CategoryCard,
-    IconSearch,
-    IconMenu
   }
 }
 </script>
   
 <style lang="less" scoped>
-.logo {
-  max-height: 120px;
-}
+.header {
 
-.form {
-  border-style: solid;
-  /* Установка нужной линии */
-  border-color: #ccc;
-  /* Цвет линии */
-  border-width: 2px;
-  border-bottom: 1;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-}
+  &__line {
+    font-weight: 700;
+    opacity: 1;
+    color: #000;
+    text-decoration: none;
+    background-color: rgb(68, 64, 64);
+    height: 20px;
+    margin: 0 auto;
+    display: flex;
+  }
 
-.top {
-  font-weight: 700;
-  opacity: 1;
-  color: #000;
-  text-decoration: none;
-  background-color: rgb(68, 64, 64);
-  height: 20px;
-  margin: 0 auto;
-  display: flex;
-}
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 90px;
+    padding: 0;
 
-.wide {
-  margin-bottom: -5px;
-}
+  }
 
-.lower {
-  // margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  gap: 5px;
-}
+  &__title {
+    display: flex;
+  }
 
-.middle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 90px;
-  padding: 0;
-}
+  &__logo {
+    max-height: 120px;
+  }
 
-.title {
-  display: flex;
-}
+  &__form {
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 2px;
+    border-bottom: 1;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+  }
 
-h3 {
-  padding-left: 20px;
-  word-wrap: break-word;
-  max-width: 250px;
-  vertical-align: middle;
+  &__text {
+    padding-left: 20px;
+    word-wrap: break-word;
+    max-width: 250px;
+    vertical-align: middle;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  &__category-card--wide {
+    margin-bottom: -5px;
+  }
 }
 </style>
-  
-  

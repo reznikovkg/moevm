@@ -1,52 +1,27 @@
 <template>
-    <div v-if="category" class="category-card" @click="openList()"
-        :style="{ 'background-blend-mode': clicked ? 'lighten' : 'normal' }">
+    <div v-if="category" class="category-card">
         <div class="category-card__wrapper">
-            <div class="category-card__header" :style="{ height: expanded ? '70px' : null }">
+            <div class="category-card__header" :style="style">
                 <h3 class=" category-card__title">
                     {{ category.title }}
                 </h3>
             </div>
             <div class="category-card__content">
                 <div class="category-card__list">
-                    <span v-if="clicked">
-                        <li v-for="(item, index) in mockData" :key="index">
-                            {{ item }}
+                    <span v-if="expanded">
+                        <li v-for="(item, index) in category.content" :key="index">
+                            <nuxt-link :to="{ name: item }"> {{ item }}</nuxt-link>
                         </li>
-                        <!-- nuxtlink  объект лейбл имя роута -->
                     </span>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
 <script>
+
 export default {
     name: 'CategoryCard',
-    data() {
-        return {
-            clicked: false,
-            // from props
-            mockData: [
-                "Пункт 1",
-                "Пункт 2",
-                "Пункт 3",
-                "Пункт 4",
-                "Пункт 5"
-            ]
-        }
-    },
-    methods: {
-        openList() {
-            this.clicked = !this.clicked
-            if (this.$colorMode.preference === 'gray') {
-                this.$colorMode.preference = 'light'
-            } else {
-                this.$colorMode.preference = 'gray'
-            }
-        }
-    },
     props: {
         items: {
             default: false,
@@ -61,6 +36,24 @@ export default {
             type: Boolean
         }
     },
+    computed: {
+        style() {
+            if (!this.category) {
+                return {}
+            }
+            if (this.expanded) {
+                return {
+                    height: '70px',
+                    backgroundImage: `url(${this.category.image})`
+                }
+            } else {
+                return {
+                    height: null,
+                    backgroundImage: `url(${this.category.image})`
+                }
+            }
+        }
+    }
 }
 </script>
 
@@ -72,6 +65,7 @@ export default {
     &__wrapper {
         display: flex;
         flex-direction: column;
+        gap: 14px;
     }
 
     &__header {
@@ -80,18 +74,11 @@ export default {
         background: #bababa;
         background-size: cover;
         background-position: center;
-        background-image: url('https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg');
         display: flex;
         justify-content: center;
         align-items: center;
         flex-grow: 1;
     }
-
-    // &__list {}
-
-    // &__content {
-    //     // text-align: center;
-    // }
 
     &__title {
         margin: 0;

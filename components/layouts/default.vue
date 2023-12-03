@@ -23,20 +23,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-// .header {
-//   font-weight: 700;
-//   opacity: 1;
-//   color: #000;
-//   text-decoration: none;
-//   background-color: rgb(68, 64, 64);
-//   height: 20px;
-//   margin: 0 auto;
-//   display: flex;
-// }
-
-// .nav {
-//   margin: 0 90px;
-//   padding: 0;
-// }
-</style>
+<style lang="less" scoped></style>
