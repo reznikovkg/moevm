@@ -2,7 +2,13 @@
   <footer class="footer__wrapper">
     <div class="footer main-container">
       <div class="footer__main">
-        Лого
+        <img :src="require(`~/assets/images/logo.jpeg`)" class="footer__logo" alt="">
+        <div>
+          Фармацевтический факультет <br> ВГУ © 2023
+        </div>
+        <div>
+          вк
+        </div>
       </div>
       <div class="footer__content">
         <div class="footer__column">
@@ -58,6 +64,8 @@
             <div>Выпускникам</div>
             <div>Работодателям</div>
             <div>Сотрудничество</div>
+            <div>Форум</div>
+            <div>Ссылки</div>
           </div>
         </div>
       </div>
@@ -83,14 +91,26 @@ export default {
     background-color: #505050;
   }
 
+  &__logo {
+    width: 80px;
+  }
+
   &__main {
     margin-right: 80px;
   }
 
   &__content {
     flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media screen and (max-width: @sizeMd) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: @sizeSm) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__column {

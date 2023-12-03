@@ -13,6 +13,9 @@
 <script>
 export default {
   name: 'IndexPage',
+  head () {
+    return { title: "Факультет" };
+  },
   computed: {
     pages () {
       return this.$router.options.routes
