@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content">
+  <div>
     <h2>Список страниц:</h2>
     <ul>
       <li v-for="page in pages" :key="page.name">
@@ -14,10 +14,8 @@
 
 export default {
   name: 'IndexPage',
-  components: {
-  },
   computed: {
-    pages() {
+    pages () {
       return this.$router.options.routes
         .filter((route) => route.path !== "/")
         .map((route) => ({ name: route.name }))

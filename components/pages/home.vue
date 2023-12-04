@@ -1,5 +1,5 @@
 <template>
-  <h2>{{ pageTitle }}</h2>
+  <h2>{{pageTitle}}</h2>
 </template>
 
 <script>
@@ -9,11 +9,13 @@ export default {
     return { title: "Главная" }
   },
   computed: {
-    pageTitle() {
+    pageTitle () {
       return this.$options.head().title
     },
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

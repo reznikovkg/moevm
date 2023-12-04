@@ -9,9 +9,9 @@
             <div class="category-card__content">
                 <div class="category-card__list">
                     <span v-if="expanded">
-                        <li v-for="(item, index) in category.content" :key="index">
+                        <div v-for="(item, index) in category.content" :key="index">
                             <nuxt-link :to="{ name: item }"> {{ item }}</nuxt-link>
-                        </li>
+                        </div>
                     </span>
                 </div>
             </div>

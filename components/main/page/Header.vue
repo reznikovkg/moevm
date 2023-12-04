@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     style(type) {
-      if (this.$store.state.globalTempVars.theme === "gray") {
+      if (this.clicked) {
         if (type === 'menu') {
           return { fill: 'white' }
         }
@@ -125,9 +125,6 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 90px;
-    padding: 0;
-
   }
 
   &__title {
