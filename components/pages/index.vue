@@ -5,9 +5,20 @@
       <li v-for="page in pages" :key="page.name">
         <nuxt-link :to="{ name: page.name }">{{ page.name }}</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/card-new-preview">Card</nuxt-link>
+      </li>
     </ul>
-    <nuxt-link to="/card-new-preview">Card</nuxt-link>
 
+    <div>
+      <h2>Последние новости</h2>
+
+      <el-carousel :interval="4000" type="card" height="200px">
+        <el-carousel-item v-for="i in news">
+          <ArticleCard :article="i" />
+        </el-carousel-item>
+      </el-carousel>
+    </div>
 
     <div>
       <h2>Факультет</h2>
@@ -31,23 +42,38 @@
       <p>География трудоустройства выпускников факультета подтверждает качество подготовки специалистов на факультете. Выпускники работают во всех крупных российских и региональных аптечных сетях, на ведущих фармацевтических предприятиях, в органах исполнительной власти субъектов федерации и муниципальных образований.</p>
     </div>
 
+    <Separator />
+
     <div>
       <h2>Контакты</h2>
-      <div>
+      <div class="jc-sb index-page__contacts">
         <div>
-          Адрес: 394006, г. Воронеж, Университетская пл., 1.
+          <div>
+            <b>Адрес:</b>
+            394006, г. Воронеж, Университетская пл., 1.
+          </div>
+          <div>
+            <b>Учебная часть факультета: </b>
+            394036, г. Воронеж, Студенческая ул., 3.
+          </div>
+          <div>
+            Тел.: (473) 253-07-89; 253-04-28; 255-47-76.
+          </div>
+          <div>
+            Факс: (473) 253-04-28.
+          </div>
+          <div>
+            e-mail: deanery@pharm.vsu.ru
+          </div>
         </div>
         <div>
-          Учебная часть факультета: 394036, г. Воронеж, Студенческая ул., 3.
-        </div>
-        <div>
-          Тел.: (473) 253-07-89; 253-04-28; 255-47-76.
-        </div>
-        <div>
-          Факс: (473) 253-04-28.
-        </div>
-        <div>
-          e-mail: deanery@pharm.vsu.ru
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A445cd185998ce8b52db1bdba272160c6b4a19b6e4dafb87bc8c984280cd1ba67&amp;source=constructor"
+            width="500"
+            height="400"
+            class="index-page__map"
+            frameborder="0"
+          />
         </div>
       </div>
     </div>
@@ -55,12 +81,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ArticleCard, { CATEGORIES } from '@/components/main/cards/ArticleCard.vue';
+
 export default {
   name: 'IndexPage',
   head () {
     return { title: "Факультет" };
   },
+  components: {
+    ArticleCard
+  },
   computed: {
+    ...mapGetters('news', [
+      'getNews'
+    ]),
+    news () {
+      return this.getNews.slice(0, 3)
+    },
     pages () {
       return this.$router.options.routes
         .filter((route) => route.path !== "/")
@@ -69,3 +107,21 @@ export default {
   },
 }
 </script>
+
+<style lang="less" scoped>
+.index-page {
+
+  &__contacts {
+
+    @media screen and (max-width: @sizeMd) {
+      flex-direction: column;
+    }
+  }
+
+  &__map {
+    @media screen and (max-width: @sizeMd) {
+      width: 100% !important;
+    }
+  }
+}
+</style>

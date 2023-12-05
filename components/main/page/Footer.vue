@@ -87,6 +87,10 @@ export default {
   display: flex;
   color: #FAFAFA;
 
+  @media screen and (max-width: @sizeMd) {
+    flex-direction: column;
+  }
+
   &__wrapper {
     background-color: #505050;
   }

@@ -92,6 +92,9 @@ export default {
     color: #ffffff;
     font-weight: 700;
     font-size: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>
