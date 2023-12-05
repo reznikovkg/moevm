@@ -15,9 +15,6 @@ export default {
 <style scoped lang="less">
 .page {
   font-family: @ffMontserrat;
-
-  &__content {
-    margin-right: 300px;
-  }
+  margin-bottom: 20px;
 }
 </style>

@@ -9,5 +9,6 @@ services:
             - ./components:/app/components
             - ./assets:/app/assets
             - ./store:/app/store
+            - ./plugins:/app/plugins
             - ./static:/app/static
-            - ./nuxt.config.js:/nuxt.config.js
+            - ./nuxt.config.js:/app/nuxt.config.js

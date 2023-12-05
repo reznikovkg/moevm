@@ -1,12 +1,14 @@
 <template>
-  <h2>{{pageTitle}}</h2>
+  <Page>
+    <h2>{{pageTitle}}</h2>
+  </Page>
 </template>
 
 <script>
 export default {
-  name: "TeachersPage",
+  name: "TeacherPage",
   head () {
-    return { title: "Преподователи" }
+    return { title: "Преподователь" }
   },
   computed: {
     pageTitle () {

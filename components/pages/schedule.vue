@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from "vuex"
-import ScheduleTable from "../ScheduleTable.vue";
+import ScheduleTable from "@/components/main/schedule/ScheduleTable.vue";
 
 export default {
   name: "SchedulePage",
