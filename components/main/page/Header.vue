@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :style="styleHeader">
     <div class="header__line">
       {{ title }}
     </div>
@@ -16,29 +16,25 @@
         placeholder="Введите"
         class="header__form"
         />
-        <IconSearch :style="style('search')" />
-        <IconMenu :style="style('menu')" @click="() => openList()" />
+        <SearchIcon :color="styleIcon" />
+        <MenuIcon :color="styleIcon" @click.native ="() => openList()" />
       </div>
     </div>
     <div class="header__cards main-container">
       <CategoryCard
         :category="{ title: 'Наука', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
-        :class="{ 'header__category-card--wide': clicked }"
         :expanded="clicked"
         />
       <CategoryCard
         :category="{ title: 'Образование', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
-        :class="{ 'header__category-card--wide': clicked }"
         :expanded="clicked"
         />
       <CategoryCard
         :category="{ title: 'Структура', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
-        :class="{ 'header__category-card--wide': clicked }"
         :expanded="clicked"
         />
       <CategoryCard
         :category="{ title: 'Прочее', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
-        :class="{ 'header__category-card--wide': clicked }"
         :expanded="clicked"
         />
     </div>
@@ -47,15 +43,15 @@
   
 <script>
 import CategoryCard from '@/components/CategoryCard.vue'
-import IconSearch from '@/assets/pictures/search.svg?inline'
-import IconMenu from '@/assets/pictures/menu.svg?inline'
+import SearchIcon from '@/components/SearchIcon.vue'
+import MenuIcon from '@/components/MenuIcon.vue'
 
 export default {
   name: "Header",
   components: {
     CategoryCard,
-    IconSearch,
-    IconMenu
+    SearchIcon,
+    MenuIcon
   },
   data() {
     return {
@@ -69,38 +65,32 @@ export default {
       required: false
     }
   },
-  methods: {
-    style(type) {
+  computed:{
+    styleHeader() {
       if (this.clicked) {
-        if (type === 'menu') {
-          return { fill: 'white' }
-        }
-        else {
-          return { stroke: 'white' }
-        }
+        return { color: '#ebf4f1', 'background-color': '#5e5f61' }
       }
       else {
-        if (type === 'menu') {
-          return { fill: 'black' }
-        }
-        else {
-          return { stroke: 'black' }
-        }
+        return { color: '#243746', 'background-color': 'white' }
       }
     },
+    styleIcon() {
+      if (this.clicked) {
+        return 'white'      
+      }
+      else {
+        return 'black'
+      }
+    }
+  },
+  methods: {
     openList() {
       this.clicked = !this.clicked
       if (this.title === 'Главная') {
         this.title = 'Меню'
-        document.body.style.color = '#ebf4f1'
-        document.body.style.backgroundColor = '#5e5f61'
-        this.$store.commit('globalTempVars/updateTheme', 'gray')
       }
       else {
         this.title = 'Главная'
-        document.body.style.color = '#243746'
-        document.body.style.backgroundColor = '#f3f5f4'
-        this.$store.commit('globalTempVars/updateTheme', 'light')
       }
     }
   }
@@ -135,6 +125,10 @@ export default {
     max-height: 120px;
   }
 
+  &__buttons{
+    display: flex;
+  }
+
   &__form {
     border-style: solid;
     border-color: #ccc;
@@ -160,8 +154,5 @@ export default {
     gap: 5px;
   }
 
-  &__category-card--wide {
-    margin-bottom: -5px;
-  }
 }
 </style>
