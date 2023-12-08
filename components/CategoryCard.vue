@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    style() {
+    style () {
       if (!this.category) {
         return {}
       }
@@ -59,7 +59,6 @@ export default {
 
 <style lang="less" scoped>
 .category-card {
-
   width: 100%;
 
   &__wrapper {

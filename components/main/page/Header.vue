@@ -53,14 +53,14 @@ export default {
       required: false
     }
   },
-  data() {
+  data () {
     return {
       clicked: false,
       title: 'Главная'
     };
   },
   computed: {
-    styleHeader() {
+    styleHeader () {
       if (this.clicked) {
         return { color: '#ebf4f1', 'background-color': '#5e5f61' }
       }
@@ -68,12 +68,12 @@ export default {
         return { color: '#243746', 'background-color': 'white' }
       }
     },
-    styleIcon() {
+    styleIcon () {
       return this.clicked ? 'white' : 'black'
     }
   },
   methods: {
-    openList() {
+    openList () {
       this.clicked = !this.clicked
       if (this.title === 'Главная') {
         this.title = 'Меню'
@@ -142,6 +142,5 @@ export default {
     justify-content: space-between;
     gap: 5px;
   }
-
 }
 </style>
