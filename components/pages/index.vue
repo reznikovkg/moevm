@@ -1,16 +1,6 @@
 <template>
   <Page>
-    <h2>Список страниц:</h2>
-    <ul>
-      <li v-for="page in pages" :key="page.name">
-        <nuxt-link :to="{ name: page.name }">{{ page.name }}</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/card-new-preview">Card</nuxt-link>
-      </li>
-    </ul>
-
-    <div class="d-flex gap-12">
+    <div class="d-flex gap-12 main-banner">
       <el-carousel :autoplay="false" class="flex-1" indicator-position="outside" height="500px">
         <el-carousel-item>
           <img :src="require(`~/assets/images/history/Aleksandr.jpg`)" alt="">
@@ -19,7 +9,7 @@
           <img :src="require(`~/assets/images/history/Alexsei.jpg`)" alt="">
         </el-carousel-item>
       </el-carousel>
-      <div>
+      <div class="jc-c">
         <TeacherCard :teacher="decan" style="height: 500px; max-width: 300px; width: 100%" />
       </div>
     </div>
@@ -29,7 +19,7 @@
     <div>
       <h2>Последние новости</h2>
       <el-carousel :autoplay="false" :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="i in news">
+        <el-carousel-item v-for="i in news" :key="i.cover">
           <ArticleCard :article="i" />
         </el-carousel-item>
       </el-carousel>
@@ -160,6 +150,12 @@ export default {
     @media screen and (max-width: @sizeMd) {
       width: 100% !important;
     }
+  }
+}
+
+.main-banner {
+  @media screen and (max-width: @sizeMd) {
+    flex-direction: column;
   }
 }
 </style>

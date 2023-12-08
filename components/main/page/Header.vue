@@ -1,36 +1,48 @@
 <template>
-  <header class="header" :style="styleHeader">
-    <div class="header__line">
-      {{ title }}
-    </div>
-    <div class="header__icons main-container">
+  <header class="header" :class="{ 'header--expanded': clicked }">
+    <div class="header__top main-container">
       <div class="header__title">
         <img src="@/assets/pictures/computer.png" class="header__logo" />
-        <h3 class="header__text">Кафедра Математического обеспечения ЭВМ</h3>
+        <h3 class="header__text">Фармацевтический <br> факультет</h3>
       </div>
       <div class="header__buttons">
-        <input v-model="value" type="search" autocomplete="off" placeholder="Введите" class="header__form" />
         <SearchIcon :color="styleIcon" />
-        <MenuIcon :color="styleIcon" @click.native="() => openList()" />
+        <MenuIcon class="main-menu" :color="styleIcon" @click.native="() => openList()" />
       </div>
     </div>
     <div class="header__cards main-container">
       <CategoryCard
-        :category="{ title: 'Наука', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :category="{
+          title: 'Факультет',
+          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
+          content: category1
+        }"
         :expanded="clicked"
-        />
+      />
       <CategoryCard
-        :category="{ title: 'Образование', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :category="{
+          title: 'Образование',
+          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
+          content: category1
+        }"
         :expanded="clicked"
-        />
+      />
       <CategoryCard
-        :category="{ title: 'Структура', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :category="{
+          title: 'Наука',
+          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
+          content: category1
+        }"
         :expanded="clicked"
-        />
+      />
       <CategoryCard
-        :category="{ title: 'Прочее', image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg', content: ['Пункт 1', 'Пункт 2', 'Пункт 3', 'Пункт 4', 'Пункт 5'] }"
+        :category="{
+          title: 'Прочее',
+          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
+          content: category1
+        }"
         :expanded="clicked"
-        />
+      />
     </div>
   </header>
 </template>
@@ -60,13 +72,13 @@ export default {
     };
   },
   computed: {
-    styleHeader () {
-      if (this.clicked) {
-        return { color: '#ebf4f1', 'background-color': '#5e5f61' }
-      }
-      else {
-        return { color: '#243746', 'background-color': 'white' }
-      }
+    category1 () {
+      return [
+        {
+          label: 'О нас',
+          route: { path: '/o-nas' }
+        }
+      ]
     },
     styleIcon () {
       return this.clicked ? 'white' : 'black'
@@ -77,8 +89,7 @@ export default {
       this.clicked = !this.clicked
       if (this.title === 'Главная') {
         this.title = 'Меню'
-      }
-      else {
+      } else {
         this.title = 'Главная'
       }
     }
@@ -87,20 +98,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header {
+.main-menu {
+  cursor: pointer;
+  opacity: 0.75;
 
-  &__line {
-    font-weight: 700;
+  &:hover {
     opacity: 1;
-    color: #000;
-    text-decoration: none;
-    background-color: rgb(68, 64, 64);
-    height: 20px;
-    margin: 0 auto;
-    display: flex;
   }
+}
 
-  &__icons {
+.header {
+  transition: 0.2s;
+  padding: 12px 0;
+  margin-bottom: 12px;
+
+  &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -108,6 +120,7 @@ export default {
 
   &__title {
     display: flex;
+    align-items: center;
   }
 
   &__logo {
@@ -119,28 +132,42 @@ export default {
   }
 
   &__form {
-    border-style: solid;
-    border-color: #ccc;
-    border-width: 2px;
-    border-bottom: 1;
+    border: 1px solid #ccc;
+
     border-left: 0;
     border-right: 0;
     border-top: 0;
   }
 
   &__text {
+    font-size: 22px;
     padding-left: 20px;
     word-wrap: break-word;
-    max-width: 250px;
     vertical-align: middle;
+    margin: 0;
+    font-family: @ffMontserrat;
   }
 
   &__cards {
     display: flex;
-    flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    gap: 5px;
+    gap: 12px;
+
+    @media screen and (max-width: @sizeMd) {
+      flex-direction: column;
+    }
+  }
+
+  &--expanded {
+    background-color: #464646;
+  }
+
+  &--expanded & {
+
+    &__title {
+      color: white;
+    }
   }
 }
 </style>

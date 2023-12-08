@@ -1,20 +1,22 @@
 <template>
-  <div v-if="category" class="category-card">
+  <div v-if="category" class="category-card" :class="{ 'category-card--expanded': expanded }">
     <div class="category-card__wrapper">
-      <div class="category-card__header" :style="style">
-        <h3 class=" category-card__title">
+      <div class="category-card__header" :style="{ backgroundImage: `url(${category.image})` }">
+        <div class="category-card__header__background" />
+        <div class="category-card__title">
           {{ category.title }}
-        </h3>
-      </div>
-      <div class="category-card__content">
-        <div class="category-card__list">
-          <span v-if="expanded">
-            <div v-for="(item, index) in category.content" :key="index">
-              <nuxt-link :to="{ name: item }"> {{ item }}</nuxt-link>
-            </div>
-          </span>
         </div>
       </div>
+
+      <Transition name="category-card__content">
+        <div v-if="expanded" class="category-card__content">
+          <div class="category-card__list">
+            <NuxtLink v-for="(item, index) in category.content" :to="item.route" :key="index">
+              <div class="category-card__link">{{ item.label }}</div>
+            </NuxtLink>
+          </div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -35,24 +37,6 @@ export default {
       default: false,
       type: Boolean
     }
-  },
-  computed: {
-    style () {
-      if (!this.category) {
-        return {}
-      }
-      if (this.expanded) {
-        return {
-          height: '70px',
-          backgroundImage: `url(${this.category.image})`
-        }
-      } else {
-        return {
-          height: null,
-          backgroundImage: `url(${this.category.image})`
-        }
-      }
-    }
   }
 }
 </script>
@@ -60,28 +44,83 @@ export default {
 <style lang="less" scoped>
 .category-card {
   width: 100%;
+  font-family: @ffMontserrat;
 
   &__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+
   }
 
   &__header {
+    transition: 0.2s;
+    height: 46px;
     text-align: center;
-    align-items: center;
-    background: #bababa;
+    margin-bottom: 10px;
+
+    background-color: #bababa;
     background-size: cover;
     background-position: center;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    position: relative;
+
+    &__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   }
 
   &__title {
-    margin: 0;
     color: white;
+    font-size: 22px;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  &__content {
+    height: 0;
+    transition: 0.2s;
+
+
+    &-enter-active, &-leave-active {
+      transition: opacity .5s;
+    }
+    &-enter, &-leave-to {
+      opacity: 0;
+    }
+  }
+
+  &__link {
+    padding-top: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &--expanded {
+
+  }
+
+
+  &--expanded & {
+
+    &__header {
+      height: 90px;
+    }
+
+    &__content {
+      height: 140px;
+    }
   }
 }
 </style>
