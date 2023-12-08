@@ -23,7 +23,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 32px;
+  padding: 16px 32px;
 
   &__item {
     flex: 1;
@@ -33,7 +33,7 @@ export default {
 
   &__title {
     padding: 0 32px;
-    font-size: 12px;
+    font-size: 8px;
     font-weight: 100;
   }
 }

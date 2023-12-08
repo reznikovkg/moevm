@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <Page>
     <ScheduleTable :schedule="schedule"/>
-  </div>
+  </Page>
 </template>
 
 <script>

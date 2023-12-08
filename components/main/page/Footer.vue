@@ -58,6 +58,7 @@
             Прочее
           </div>
           <div class="footer__section-list">
+            <div><NuxtLink to="/schedule" class="footer__link">Расписание</NuxtLink></div>
             <div>Трудоустройство</div>
             <div>Сессия</div>
             <div>Студентам</div>

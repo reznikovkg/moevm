@@ -1,11 +1,14 @@
 <template>
   <div v-if="teacher" class="teacher-card" :style="style">
     <div class="teacher-card__wrapper">
-      <div class="teacher-card__header">
-        <span class="teacher-card__datetime">{{ teacher.date }}</span>
-      </div>
       <div class="teacher-card__content">
         <h3 class="teacher-card__title">{{ teacher.name }}</h3>
+        <div v-if="teacher.position" class="teacher-card__position">
+          {{ teacher.position }}
+        </div>
+        <div v-if="teacher.quote" class="teacher-card__quote">
+          "{{ teacher.quote }}"
+        </div>
       </div>
     </div>
   </div>
@@ -48,9 +51,12 @@ export default {
   background-size: cover;
   background-position: center;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 
   &__wrapper {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.5);
     padding: 18px 22px;
   }
 
@@ -65,14 +71,29 @@ export default {
   }
 
   &__content {
-    margin-top: 170px;
+
   }
 
   &__title {
     margin: 0;
-    color: #ffffff;
+    color: #e3e3e3;
     font-weight: 700;
     font-size: 22px;
+    text-align: center;
+  }
+
+  &__position {
+    margin-top: 6px;
+    text-align: center;
+    color: #bbbbbb;
+  }
+
+  &__quote {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
+    text-align: center;
+    color: #e0e0e0;
   }
 }
 </style>

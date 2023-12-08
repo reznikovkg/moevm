@@ -10,15 +10,32 @@
       </li>
     </ul>
 
+    <div class="d-flex gap-12">
+      <el-carousel :autoplay="false" class="flex-1" indicator-position="outside" height="500px">
+        <el-carousel-item>
+          <img :src="require(`~/assets/images/history/Aleksandr.jpg`)" alt="">
+        </el-carousel-item>
+        <el-carousel-item>
+          <img :src="require(`~/assets/images/history/Alexsei.jpg`)" alt="">
+        </el-carousel-item>
+      </el-carousel>
+      <div>
+        <TeacherCard :teacher="decan" style="height: 500px; max-width: 300px; width: 100%" />
+      </div>
+    </div>
+
+    <Separator />
+
     <div>
       <h2>Последние новости</h2>
-
-      <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel :autoplay="false" :interval="4000" type="card" height="200px">
         <el-carousel-item v-for="i in news">
           <ArticleCard :article="i" />
         </el-carousel-item>
       </el-carousel>
     </div>
+
+    <Separator />
 
     <div>
       <h2>Факультет</h2>
@@ -40,6 +57,13 @@
       <p>Все образовательные программы разработаны с участием представителей крупнейших работодателей регионального фармацевтического рынка и прошли экспертизу на соответствие международному стандарту качества BS EN ISO 9001:2008, в 2009 году пройдена повторная сертификация СМК. Сертификат выдан органом по сертификации NQA Global Assurance Limited (Великобритания).</p>
       <p>Более 98% выпускников трудоустраиваются по специальности, 2% трудоустраиваются медицинскими представителями.</p>
       <p>География трудоустройства выпускников факультета подтверждает качество подготовки специалистов на факультете. Выпускники работают во всех крупных российских и региональных аптечных сетях, на ведущих фармацевтических предприятиях, в органах исполнительной власти субъектов федерации и муниципальных образований.</p>
+    </div>
+
+    <Separator />
+
+    <div>
+      <h2>Частозадаваемые вопросы</h2>
+      <ListFaq/>
     </div>
 
     <Separator />
@@ -83,6 +107,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import ArticleCard, { CATEGORIES } from '@/components/main/cards/ArticleCard.vue';
+import ListFaq from '@/components/parts/faq/ListFaq.vue';
+import TeacherCard from "@/components/main/cards/TeacherCard"
+
 
 export default {
   name: 'IndexPage',
@@ -90,7 +117,9 @@ export default {
     return { title: "Факультет" };
   },
   components: {
-    ArticleCard
+    ArticleCard,
+    ListFaq,
+    TeacherCard
   },
   computed: {
     ...mapGetters('news', [
@@ -104,6 +133,15 @@ export default {
         .filter((route) => route.path !== "/")
         .map((route) => ({ name: route.name }))
     },
+    decan () {
+      return {
+        code: 'chupandina',
+        name: 'Чупандина Елена Евгеньевна',
+        cover: require('~/assets/images/cel.jpeg'),
+        position: 'Декан',
+        quote: 'Быть лучшими во всем!'
+      }
+    }
   },
 }
 </script>
