@@ -1,8 +1,6 @@
 <template>
   <div>
-    <header>
-      ...
-    </header>
+    <Header  />
     <div class="main__wrapper">
       <main class="main-container">
         <Nuxt />
@@ -13,12 +11,14 @@
 </template>
 
 <script>
-import Footer from '@/components/main/page/Footer.vue'
+import Header from '@/components//main/page/Header.vue';
+import Footer from '@/components/main/page/Footer.vue';
 
 export default {
   name: 'DefaultLayout',
   components: {
-    Footer
+    Footer,
+    Header
   }
 }
 </script>
