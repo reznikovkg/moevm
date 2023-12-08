@@ -9,15 +9,9 @@
         <h3 class="header__text">Кафедра Математического обеспечения ЭВМ</h3>
       </div>
       <div class="header__buttons">
-        <input 
-        v-model="value" 
-        type="search" 
-        autocomplete="off"
-        placeholder="Введите"
-        class="header__form"
-        />
+        <input v-model="value" type="search" autocomplete="off" placeholder="Введите" class="header__form" />
         <SearchIcon :color="styleIcon" />
-        <MenuIcon :color="styleIcon" @click.native ="() => openList()" />
+        <MenuIcon :color="styleIcon" @click.native="() => openList()" />
       </div>
     </div>
     <div class="header__cards main-container">
@@ -40,7 +34,7 @@
     </div>
   </header>
 </template>
-  
+
 <script>
 import CategoryCard from '@/components/CategoryCard.vue'
 import SearchIcon from '@/components/SearchIcon.vue'
@@ -53,19 +47,19 @@ export default {
     SearchIcon,
     MenuIcon
   },
-  data() {
-    return {
-      clicked: false,
-      title: 'Главная'
-    };
-  },
   props: {
     value: {
       type: String,
       required: false
     }
   },
-  computed:{
+  data() {
+    return {
+      clicked: false,
+      title: 'Главная'
+    };
+  },
+  computed: {
     styleHeader() {
       if (this.clicked) {
         return { color: '#ebf4f1', 'background-color': '#5e5f61' }
@@ -75,12 +69,7 @@ export default {
       }
     },
     styleIcon() {
-      if (this.clicked) {
-        return 'white'      
-      }
-      else {
-        return 'black'
-      }
+      return this.clicked ? 'white' : 'black'
     }
   },
   methods: {
@@ -96,7 +85,7 @@ export default {
   }
 }
 </script>
-  
+
 <style lang="less" scoped>
 .header {
 
@@ -125,7 +114,7 @@ export default {
     max-height: 120px;
   }
 
-  &__buttons{
+  &__buttons {
     display: flex;
   }
 

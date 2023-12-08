@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "HomePage",
-  head() {
+  head () {
     return { title: "Главная" }
   },
   computed: {

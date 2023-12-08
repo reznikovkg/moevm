@@ -30,8 +30,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/less/fonts.less',
-    '@/assets/less/common.less'
+    './assets/less/fonts.less',
+    './assets/less/common.less'
   ],
 
   styleResources: {
@@ -55,6 +55,7 @@ export default {
   modules: [
     '@nuxtjs/style-resources'
   ],
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
