@@ -18,9 +18,11 @@ export default {
   name: 'DefaultLayout',
   components: {
     Footer,
-    Header    
+    Header
   }
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+
+</style>
