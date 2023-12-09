@@ -2,12 +2,12 @@
   <footer class="footer__wrapper">
     <div class="footer main-container">
       <div class="footer__main">
-        <img :src="require(`~/assets/images/logo.jpeg`)" class="footer__logo" alt="">
-        <div>
-          Фармацевтический факультет <br> ВГУ © 2023
+        <LogoIcon class="footer__logo" />
+        <div class="footer__title">
+          Фармацевтический факультет
         </div>
-        <div>
-          вк
+        <div class="footer__title">
+          ВГУ © 2023
         </div>
       </div>
       <div class="footer__content">
@@ -17,13 +17,25 @@
           </div>
           <div class="footer__section-list">
             <div><NuxtLink to="/o-nas" class="footer__link">О нас</NuxtLink></div>
-            <div>История</div>
+            <div><NuxtLink to="/history" class="footer__link">История</NuxtLink></div>
             <div>Структура</div>
             <div>Деканат</div>
             <div>Кафедры</div>
             <div>Пресса</div>
             <div>Жизнь</div>
             <div>Новости</div>
+          </div>
+        </div>
+        <div class="footer__column">
+          <div class="footer__section-name">
+            Наука
+          </div>
+          <div class="footer__section-list">
+            <div>Ученый совет</div>
+            <div>Научно-методический совет</div>
+            <div>Конференции</div>
+            <div>Научное студенческое общество</div>
+            <div>Олимпиады</div>
           </div>
         </div>
         <div class="footer__column">
@@ -39,18 +51,6 @@
             <div>Повышение квалификации</div>
             <div>Практика</div>
             <div>Аккредитация</div>
-          </div>
-        </div>
-        <div class="footer__column">
-          <div class="footer__section-name">
-            Наука
-          </div>
-          <div class="footer__section-list">
-            <div>Ученый совет</div>
-            <div>Научно-методический совет</div>
-            <div>Конференции</div>
-            <div>Научное студенческое общество</div>
-            <div>Олимпиады</div>
           </div>
         </div>
         <div class="footer__column">
@@ -75,8 +75,13 @@
 </template>
 
 <script>
+import LogoIcon from "../icons/LogoIcon";
+
 export default {
-  name: "Footer"
+  name: "Footer",
+  components: {
+    LogoIcon
+  }
 }
 </script>
 
@@ -98,6 +103,14 @@ export default {
 
   &__logo {
     width: 80px;
+    height: 80px;
+    fill: white;
+  }
+
+  &__title {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 4px;
   }
 
   &__main {

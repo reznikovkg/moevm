@@ -11,9 +11,12 @@
       <Transition name="category-card__content">
         <div v-if="expanded" class="category-card__content">
           <div class="category-card__list">
-            <NuxtLink v-for="(item, index) in category.content" :to="item.route" :key="index">
-              <div class="category-card__link">{{ item.label }}</div>
-            </NuxtLink>
+            <template v-for="(item, index) in category.content">
+              <NuxtLink v-if="item.route" :to="item.route" :key="index">
+                <div class="category-card__link">{{ item.label }}</div>
+              </NuxtLink>
+              <div v-else class="category-card__link">{{ item.label }}</div>
+            </template>
           </div>
         </div>
       </Transition>
@@ -65,13 +68,22 @@ export default {
     align-items: center;
     position: relative;
 
+    cursor: pointer;
+
     &__background {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(68, 220, 255, 0.35);
+    }
+
+    &:hover {
+
+      .category-card__title {
+        font-size: 26px;
+      }
     }
   }
 
@@ -80,6 +92,7 @@ export default {
     font-size: 22px;
     font-weight: 700;
     z-index: 1;
+    transition: 0.2s;
   }
 
   &__content {
@@ -116,10 +129,14 @@ export default {
 
     &__header {
       height: 90px;
+
+      &__background {
+        background-color: rgba(68, 220, 255, 0.1);
+      }
     }
 
     &__content {
-      height: 140px;
+      height: 220px;
     }
   }
 }

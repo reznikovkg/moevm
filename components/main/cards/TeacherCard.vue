@@ -56,7 +56,7 @@ export default {
   flex-direction: column;
 
   &__wrapper {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 170, 200, 0.65);
     padding: 18px 22px;
   }
 

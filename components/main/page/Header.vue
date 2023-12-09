@@ -1,9 +1,10 @@
 <template>
   <header class="header" :class="{ 'header--expanded': clicked }">
     <div class="header__top main-container">
-      <div class="header__title">
-        <img src="@/assets/pictures/computer.png" class="header__logo" />
-        <h3 class="header__text">Фармацевтический <br> факультет</h3>
+      <div class="header__left">
+        <LogoIcon class="header__logo" />
+        <h3 class="header__title">
+          <span class="header__title__sub">Фарм</span>ацевтический <br><span class="header__title__sub">фак</span>ультет</h3>
       </div>
       <div class="header__buttons">
         <SearchIcon :color="styleIcon" />
@@ -14,15 +15,7 @@
       <CategoryCard
         :category="{
           title: 'Факультет',
-          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
-          content: category1
-        }"
-        :expanded="clicked"
-      />
-      <CategoryCard
-        :category="{
-          title: 'Образование',
-          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
+          image: require('~/assets/images/category4.jpeg'),
           content: category1
         }"
         :expanded="clicked"
@@ -30,16 +23,24 @@
       <CategoryCard
         :category="{
           title: 'Наука',
-          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
-          content: category1
+          image: require('~/assets/images/category1.jpeg'),
+          content: category3
+        }"
+        :expanded="clicked"
+      />
+      <CategoryCard
+        :category="{
+          title: 'Образование',
+          image: require('~/assets/images/category3.jpeg'),
+          content: category2
         }"
         :expanded="clicked"
       />
       <CategoryCard
         :category="{
           title: 'Прочее',
-          image: 'https://ui.pnzreg.ru/upload/iblock/c94/3016425.jpg',
-          content: category1
+          image: require('~/assets/images/category5.jpeg'),
+          content: category4
         }"
         :expanded="clicked"
       />
@@ -49,15 +50,17 @@
 
 <script>
 import CategoryCard from '@/components/CategoryCard.vue'
-import SearchIcon from '@/components/SearchIcon.vue'
-import MenuIcon from '@/components/MenuIcon.vue'
+import SearchIcon from '@/components/main/icons/SearchIcon.vue'
+import MenuIcon from '@/components/main/icons/MenuIcon.vue'
+import LogoIcon from '@/components/main/icons/LogoIcon.vue'
 
 export default {
   name: "Header",
   components: {
     CategoryCard,
     SearchIcon,
-    MenuIcon
+    MenuIcon,
+    LogoIcon
   },
   props: {
     value: {
@@ -77,7 +80,107 @@ export default {
         {
           label: 'О нас',
           route: { path: '/o-nas' }
-        }
+        },
+        {
+          label: 'История',
+          route: { path: '/history' }
+        },
+        {
+          label: 'Структура',
+        },
+        {
+          label: 'Деканат',
+        },
+        {
+          label: 'Кафедры',
+        },
+        {
+          label: 'Пресса',
+        },
+        {
+          label: 'Жизнь',
+        },
+        {
+          label: 'Новости',
+        },
+      ]
+    },
+    category2 () {
+      return [
+        {
+          label: 'Поступающим',
+        },
+        {
+          label: 'Образовательные программы',
+        },
+        {
+          label: 'СПО',
+        },
+        {
+          label: 'Ординатура',
+        },
+        {
+          label: 'Аспирантура',
+        },
+        {
+          label: 'Повышение квалификации',
+        },
+        {
+          label: 'Практика',
+        },
+        {
+          label: 'Аккредитация',
+        },
+      ]
+    },
+    category3 () {
+      return [
+        {
+          label: 'Ученый совет',
+        },
+        {
+          label: 'Научно-методический совет',
+        },
+        {
+          label: 'Конференции',
+        },
+        {
+          label: 'Научное студенческое общество',
+        },
+        {
+          label: 'Олимпиады',
+        },
+      ]
+    },
+    category4 () {
+      return [
+        {
+          label: 'Расписание',
+        },
+        {
+          label: 'Трудоустройство',
+        },
+        {
+          label: 'Сессия',
+        },
+        {
+          label: 'Студентам',
+        },
+        {
+          label: 'Выпускникам',
+        },
+        {
+          label: 'Работодателям',
+        },
+        {
+          label: 'Сотрудничество',
+        },
+        {
+          label: 'Форум',
+        },
+        {
+          label: 'Ссылки',
+        },
       ]
     },
     styleIcon () {
@@ -116,15 +219,24 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
+    color: #464646;
   }
 
-  &__title {
+  &__left {
     display: flex;
     align-items: center;
   }
 
   &__logo {
     max-height: 120px;
+    width: 100px;
+    height: 100px;
+    fill: @colorMain;
+    @media screen and (max-width: @sizeMd) {
+      width: 60px;
+      height: 60px;
+    }
   }
 
   &__buttons {
@@ -139,13 +251,25 @@ export default {
     border-top: 0;
   }
 
-  &__text {
+  &__title {
     font-size: 22px;
+    text-transform: uppercase;
     padding-left: 20px;
     word-wrap: break-word;
     vertical-align: middle;
     margin: 0;
     font-family: @ffMontserrat;
+
+    @media screen and (max-width: @sizeMd) {
+      font-size: 14px;
+    }
+    &__sub {
+      font-size: 32px;
+
+      @media screen and (max-width: @sizeMd) {
+        font-size: 18px;
+      }
+    }
   }
 
   &__cards {
@@ -160,13 +284,17 @@ export default {
   }
 
   &--expanded {
-    background-color: #464646;
+    background-color: @colorMain;
   }
 
   &--expanded & {
 
+    &__logo {
+      fill: @colorWhite;
+    }
+
     &__title {
-      color: white;
+      color: @colorWhite;
     }
   }
 }
