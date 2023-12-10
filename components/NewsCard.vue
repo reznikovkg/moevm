@@ -93,6 +93,8 @@ export default {
 
   &__image{
     margin-top: 10px;
+    max-height: 500px;
+    width: 100%;
   }
 
   &__content {
