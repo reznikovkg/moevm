@@ -10,7 +10,7 @@
             {{ categoryName }}
           </Badge>
           <span class="news-card__datetime">
-            {{ news.dateCreated }}
+            {{ formatDate }}
           </span>
         </div>
         <img :src="imageUrl" class="news-card__image" />
@@ -57,6 +57,12 @@ export default {
     },
     content () {
       return this.news.body
+    },
+    formatDate () {
+      let date = new Date(this.news.dateCreated);
+      let datePart = date.toLocaleString('ru-RU', { year: '2-digit', month: '2-digit', day: '2-digit' });
+      let timePart = date.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+      return `${datePart} в ${timePart}`;
     }
   }
 }
