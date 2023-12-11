@@ -60,7 +60,7 @@ export default {
     },
     formatDate () {
       let date = new Date(this.news.dateCreated);
-      let datePart = date.toLocaleString('ru-RU', { year: '2-digit', month: '2-digit', day: '2-digit' });
+      let datePart = date.toLocaleString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
       let timePart = date.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit' });
       return `${datePart} в ${timePart}`;
     }
