@@ -10,13 +10,13 @@ import NewsCard from '@/components/NewsCard.vue';
 
 export default {
   name: "OneNewsPage",
-  components:{
+  components: {
     NewsCard
   },
   computed: {
-    ...mapGetters('news', {
-      getNewsByUuid: 'getNewsByUuid'
-    }),
+    ...mapGetters('news', [
+      'getNewsByUuid'
+    ]),
     news () {
       return this.getNewsByUuid(this.$route.params.id);
     }

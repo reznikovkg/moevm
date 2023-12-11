@@ -36,12 +36,6 @@ export default {
       type: Object
     }
   },
-  data () {
-    return {
-      categoryName: 'Новости',
-      notFoundImage: 'https://www.nepalclimbing.com/public/images/no-image.jpg'
-    };
-  },
   computed: {
     imageUrl () {
       if (!this.news) {
@@ -52,6 +46,12 @@ export default {
       }
       return this.news.image
     },
+    categoryName () {
+      return 'Новости'
+    },
+    notFoundImage () {
+      return 'https://www.nepalclimbing.com/public/images/no-image.jpg'
+    },
     categoryColor () {
       return this.news ? 'red' : ''
     },
@@ -59,9 +59,9 @@ export default {
       return this.news.body
     },
     formatDate () {
-      let date = new Date(this.news.dateCreated);
-      let datePart = date.toLocaleString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
-      let timePart = date.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+      const date = new Date(this.news.dateCreated);
+      const datePart = date.toLocaleString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+      const timePart = date.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit' });
       return `${datePart} в ${timePart}`;
     }
   }
@@ -69,10 +69,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import (css) url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
-
 .news-card {
-  font-family: 'Montserrat', sans-serif;
+  font-family: @ffMontserrat;
 
   &__wrapper {
     padding: 18px 22px;

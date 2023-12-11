@@ -4,15 +4,15 @@
       {{ pageTitle }}
     </h2>
     <div
-    v-for="(item, index) in news"
-    :key="index"
-    class="news-page__item"
+      v-for="(item, index) in news"
+      :key="index"
+      class="news-page__item"
     >
-      <nuxt-link :to="`/news/${item.uuid}`" class="news-page__link">
+      <NuxtLink :to="`/news/${item.uuid}`" class="news-page__link">
         <ArticleCard
           :article="{ category: categories.NEWS, title: item.title, cover: item.image, date: item.dateCreated }"
         />
-      </nuxt-link>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -27,12 +27,12 @@ export default {
     return { title: "Новости" };
   },
   computed: {
-    pageTitle () {
-      return this.$options.head().title
-    },
     ...mapGetters('news', {
       news: 'getNews'
     }),
+    pageTitle () {
+      return this.$options.head().title
+    },
     categories () {
       return CATEGORIES
     }
