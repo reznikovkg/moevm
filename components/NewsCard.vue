@@ -6,12 +6,12 @@
           {{ news.title }}
         </h3>
         <div class="news-card__badge">
-          <span class="news-card__datetime">
-            {{ news.dateCreated }}
-          </span>
           <Badge :color="categoryColor">
             {{ categoryName }}
           </Badge>
+          <span class="news-card__datetime">
+            {{ news.dateCreated }}
+          </span>
         </div>
         <img :src="imageUrl" class="news-card__image" />
       </div>
@@ -66,9 +66,9 @@ export default {
 @import (css) url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
 .news-card {
-  box-shadow: 4px 4px 10px 0px #d5d5d5;
-  background-size: cover;
-  background-position: center;
+  // box-shadow: 4px 4px 10px 0px #d5d5d5;
+  // background-size: cover;
+  // background-position: center;
   font-family: 'Montserrat', sans-serif;
 
   &__wrapper {
@@ -85,6 +85,8 @@ export default {
     flex-direction: row;
     gap: 20px;
     align-items: baseline;
+    margin-top: 10px;
+    font-size: small;
   }
 
   &__datetime {
