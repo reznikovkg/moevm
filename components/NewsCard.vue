@@ -66,9 +66,6 @@ export default {
 @import (css) url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
 .news-card {
-  // box-shadow: 4px 4px 10px 0px #d5d5d5;
-  // background-size: cover;
-  // background-position: center;
   font-family: 'Montserrat', sans-serif;
 
   &__wrapper {
