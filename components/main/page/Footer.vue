@@ -18,12 +18,12 @@
           <div class="footer__section-list">
             <div><NuxtLink to="/o-nas" class="footer__link">О нас</NuxtLink></div>
             <div><NuxtLink to="/history" class="footer__link">История</NuxtLink></div>
-            <div>Структура</div>
-            <div>Деканат</div>
-            <div>Кафедры</div>
-            <div>Пресса</div>
-            <div>Жизнь</div>
-            <div>Новости</div>
+            <div class="footer__link">Структура</div>
+            <div class="footer__link">Деканат</div>
+            <div class="footer__link">Кафедры</div>
+            <div class="footer__link">Пресса</div>
+            <div class="footer__link">Жизнь</div>
+            <div class="footer__link">Новости</div>
           </div>
         </div>
         <div class="footer__column">
@@ -31,11 +31,11 @@
             Наука
           </div>
           <div class="footer__section-list">
-            <div>Ученый совет</div>
-            <div>Научно-методический совет</div>
-            <div>Конференции</div>
-            <div>Научное студенческое общество</div>
-            <div>Олимпиады</div>
+            <div class="footer__link">Ученый совет</div>
+            <div class="footer__link">Научно-методический совет</div>
+            <div class="footer__link">Конференции</div>
+            <div class="footer__link">Научное студенческое общество</div>
+            <div class="footer__link">Олимпиады</div>
           </div>
         </div>
         <div class="footer__column">
@@ -43,14 +43,14 @@
             Образование
           </div>
           <div class="footer__section-list">
-            <div>Поступающим</div>
-            <div>Образовательные программы</div>
-            <div>СПО</div>
-            <div>Ординатура</div>
-            <div>Аспирантура</div>
-            <div>Повышение квалификации</div>
-            <div>Практика</div>
-            <div>Аккредитация</div>
+            <div class="footer__link">Поступающим</div>
+            <div class="footer__link">Образовательные программы</div>
+            <div class="footer__link">СПО</div>
+            <div class="footer__link">Ординатура</div>
+            <div class="footer__link">Аспирантура</div>
+            <div class="footer__link">Повышение квалификации</div>
+            <div class="footer__link">Практика</div>
+            <div class="footer__link">Аккредитация</div>
           </div>
         </div>
         <div class="footer__column">
@@ -59,14 +59,14 @@
           </div>
           <div class="footer__section-list">
             <div><NuxtLink to="/schedule" class="footer__link">Расписание</NuxtLink></div>
-            <div>Трудоустройство</div>
-            <div>Сессия</div>
-            <div>Студентам</div>
-            <div>Выпускникам</div>
-            <div>Работодателям</div>
-            <div>Сотрудничество</div>
-            <div>Форум</div>
-            <div>Ссылки</div>
+            <div class="footer__link">Трудоустройство</div>
+            <div class="footer__link">Сессия</div>
+            <div class="footer__link">Студентам</div>
+            <div class="footer__link">Выпускникам</div>
+            <div class="footer__link">Работодателям</div>
+            <div class="footer__link">Сотрудничество</div>
+            <div class="footer__link">Форум</div>
+            <div class="footer__link">Ссылки</div>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@ export default {
   color: #FAFAFA;
 
   @media screen and (max-width: @sizeMd) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   &__wrapper {
@@ -115,6 +115,7 @@ export default {
 
   &__main {
     margin-right: 80px;
+    margin-bottom: 40px;
   }
 
   &__content {
@@ -143,13 +144,14 @@ export default {
   &__section-list {
     min-width: 280px;
     font-size: 12px;
+    margin-bottom: 30px;
   }
 
   &__link {
     color: #FFFFFF;
     text-decoration: none;
     transition: 300ms;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     display: block;
 
     &:hover {

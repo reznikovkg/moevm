@@ -1,14 +1,23 @@
 <template>
   <header class="header" :class="{ 'header--expanded': clicked }">
     <div class="header__top main-container">
-      <div class="header__left">
-        <LogoIcon class="header__logo" />
-        <h3 class="header__title">
-          <span class="header__title__sub">Фарм</span>ацевтический <br><span class="header__title__sub">фак</span>ультет</h3>
-      </div>
+      <NuxtLink to="/">
+        <div class="header__left">
+          <LogoIcon class="header__logo" />
+          <h3 class="header__title">
+            <span class="header__title__sub">Фарм</span>ацевтический <br><span class="header__title__sub">фак</span>ультет
+          </h3>
+          <img v-show="!clicked" class="header__logo-vsu sm-m" :src="require('~/assets/images/vsu.png')" alt="">
+          <h3 v-show="!clicked" class="header__title sm-m">
+            Воронежский<br>
+            Государственный<br>
+            Университет
+          </h3>
+        </div>
+      </NuxtLink>
       <div class="header__buttons">
         <SearchIcon :color="styleIcon" />
-        <MenuIcon class="main-menu" :color="styleIcon" @click.native="() => openList()" />
+        <MenuIcon class="main-menu" :color="styleIcon" @click.native="() => toggleHandler()" />
       </div>
     </div>
     <div class="header__cards main-container">
@@ -156,6 +165,7 @@ export default {
       return [
         {
           label: 'Расписание',
+          route: { path: '/schedule' }
         },
         {
           label: 'Трудоустройство',
@@ -185,16 +195,21 @@ export default {
     },
     styleIcon () {
       return this.clicked ? 'white' : 'black'
+    },
+    currentPath () {
+      return this.$route.path
+    }
+  },
+  watch: {
+    currentPath: {
+      handler () {
+        this.clicked = false
+      }
     }
   },
   methods: {
-    openList () {
+    toggleHandler () {
       this.clicked = !this.clicked
-      if (this.title === 'Главная') {
-        this.title = 'Меню'
-      } else {
-        this.title = 'Главная'
-      }
     }
   }
 }
@@ -239,6 +254,10 @@ export default {
     }
   }
 
+  &__logo-vsu {
+    width: 60px;
+  }
+
   &__buttons {
     display: flex;
   }
@@ -254,20 +273,22 @@ export default {
   &__title {
     font-size: 22px;
     text-transform: uppercase;
-    padding-left: 20px;
+    padding: 0 20px;
     word-wrap: break-word;
     vertical-align: middle;
     margin: 0;
     font-family: @ffMontserrat;
 
     @media screen and (max-width: @sizeMd) {
-      font-size: 14px;
+      font-size: 12px;
+      padding: 0 10px;
     }
+
     &__sub {
       font-size: 32px;
 
       @media screen and (max-width: @sizeMd) {
-        font-size: 18px;
+        font-size: 20px;
       }
     }
   }

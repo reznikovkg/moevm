@@ -47,9 +47,9 @@ export default {
       }
       switch (this.article.category) {
         case CATEGORIES.ADVS:
-          return '#0058d8'
+          return '#00f8ff'
         case CATEGORIES.NEWS:
-          return 'red'
+          return '#00ff8c'
         default:
           return ''
       }

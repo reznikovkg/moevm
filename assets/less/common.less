@@ -41,3 +41,51 @@ a {
 h1, h2, h3, h4, h5, h6 {
   color: @colorMain;
 }
+
+b {
+  color: @colorMain;
+}
+
+.mb-6 {
+  margin-bottom: 6px;
+}
+
+.el-collapse-item__header {
+  height: auto !important;
+  line-height: 20px !important;
+  padding: 10px 0 !important;
+  &.is-active {
+    color: @colorMain;
+  }
+}
+
+.fd-col-mobile {
+  justify-content: center;
+
+  @media screen and (max-width: @sizeMd) {
+    flex-direction: column;
+  }
+}
+
+.fd-col-mobile-2 {
+  justify-content: center;
+
+  @media screen and (max-width: @sizeMd) {
+    flex-direction: column-reverse;
+  }
+}
+
+
+.ta-c {
+  margin-top: 40px;
+  text-align: center;
+  @media screen and (max-width: @sizeMd) {
+    margin-top: 0;
+  }
+}
+
+.sm-m {
+  @media screen and (max-width: @sizeMd) {
+    display: none;
+  }
+}

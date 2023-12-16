@@ -1,5 +1,5 @@
 <template>
-  <div v-if="teacher" class="teacher-card" :style="style">
+  <div v-if="teacher" class="teacher-card" :class="`teacher-card--${size}`" :style="style">
     <div class="teacher-card__wrapper">
       <div class="teacher-card__content">
         <h3 class="teacher-card__title">{{ teacher.name }}</h3>
@@ -26,6 +26,10 @@ export default {
     teacher: {
       default: () => (null),
       type: Object
+    },
+    size: {
+      default: '',
+      type: String
     }
   },
   computed: {
@@ -94,6 +98,16 @@ export default {
     margin-top: 4px;
     text-align: center;
     color: #e0e0e0;
+  }
+
+  &--small & {
+    &__title {
+      font-size: 18px;
+    }
+
+    &__wrapper {
+      padding: 12px 14px;
+    }
   }
 }
 </style>
