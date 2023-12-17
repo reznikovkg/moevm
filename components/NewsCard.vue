@@ -13,7 +13,7 @@
             {{ formatDate }}
           </span>
         </div>
-        <img :src="imageUrl" class="news-card__image" />
+        <img :src="imageUrl" @click="() => openHelpModal({images: this.news.images, index: 0})" class="news-card__image" />
       </div>
       <div class="news-card__content">
         <p v-html="content" class="news-card__body" />
@@ -24,12 +24,14 @@
 
 <script>
 import Badge from '@/components/Badge.vue';
+import { helpModal } from "@/mixins/modals";
 
 export default {
   name: "NewsCard",
   components: {
     Badge
   },
+  mixins: [helpModal],
   props: {
     news: {
       default: () => (null),
@@ -41,16 +43,16 @@ export default {
       if (!this.news) {
         return {}
       }
-      if (!this.news.image) {
+      if (!this.news.images) {
         return this.notFoundImage
       }
-      return this.news.image
+      return this.news.images[0]
     },
     categoryName () {
       return 'Новости'
     },
     notFoundImage () {
-      return 'https://www.nepalclimbing.com/public/images/no-image.jpg'
+      return 'https://i.pinimg.com/originals/3c/4c/08/3c4c08a97a8fbeea6e6384a30551f533.jpg'
     },
     categoryColor () {
       return this.news ? 'red' : ''

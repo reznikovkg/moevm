@@ -10,7 +10,7 @@
     >
       <NuxtLink :to="`/news/${item.uuid}`" class="news-page__link">
         <ArticleCard
-          :article="{ category: categories.NEWS, title: item.title, cover: item.image, date: item.dateCreated }"
+          :article="{ category: categories.NEWS, title: item.title, cover: item.images[0], date: item.dateCreated }"
         />
       </NuxtLink>
     </div>
