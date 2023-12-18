@@ -24,8 +24,8 @@ const getters = {
 
 const mutations = {
   removeModal: (state, hash) => {
-      delete state.modals[hash]
-      state.modals = { ...state.modals }
+    delete state.modals[hash]
+    state.modals = { ...state.modals }
   },
   openModal: (state, { component, params }) => {
     const hash = genHash()

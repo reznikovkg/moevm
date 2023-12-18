@@ -24,41 +24,25 @@ export default {
   props: {
     params: Object
   },
-  data() {
+  data () {
     return {
       currentImage: this.params.index || 0
     }
   },
   computed: {
-    image() {
+    image () {
       return this.params.images[this.currentImage]
     }
   },
   methods: {
-    click(btn) {
-      if (btn.click) {
-        this.clickHandler(btn.click)
-      }
-      if (btn.afterClick) {
-        this.clickHandler(btn.afterClick)
-      }
-    },
-    clickHandler(click) {
-      if (typeof click === 'string') {
-        if (click === 'emitClose') {
-          return this.$emit('close')
-        }
-      }
-      return click()
-    },
-    nextImage() {
+    nextImage () {
       if (this.currentImage < this.params.images.length - 1) {
         this.currentImage++
       } else {
         this.currentImage = 0
       }
     },
-    prevImage() {
+    prevImage () {
       if (this.currentImage > 0) {
         this.currentImage--
       } else {
@@ -74,9 +58,7 @@ export default {
   &__image-container {
     position: relative;
     width: 100%;
-    /* adjust as needed */
     height: 100%;
-    /* adjust as needed */
   }
 
   &__overlay {
@@ -89,7 +71,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    /* adjust as needed */
   }
 
   &__image {
@@ -98,10 +79,8 @@ export default {
 
   &__button {
     background: rgba(255, 255, 255, 0.7);
-    /* adjust as needed */
     border: none;
     padding: 10px;
-    /* adjust as needed */
     cursor: pointer;
   }
 }
