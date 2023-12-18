@@ -2,9 +2,9 @@
   <ModalComponent>
     <div class="modal__image-container">
       <img :src="image" class="modal__image" />
-      <div class="modal__overlay" v-if="params.images.length > 1">
-        <button @click="prevImage" class="modal__button modal__button--next">След.</button>
-        <button @click="nextImage" class="modal__button modal__button--prev">Пред.</button>
+      <div v-if="params.images.length > 1" class="modal__overlay">
+        <button @click="() => prevImage()" class="modal__button modal__button--next">След.</button>
+        <button @click="() => nextImage()" class="modal__button modal__button--prev">Пред.</button>
       </div>
     </div>
     <button @click="() => $emit('close')" class="modal__button modal__button--close">
@@ -17,7 +17,7 @@
 import ModalComponent from "@/components/parts/Modal";
 
 export default {
-  name: "HelpModal",
+  name: "PicturePreviewModal",
   components: {
     ModalComponent
   },

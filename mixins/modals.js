@@ -1,14 +1,14 @@
 import { mapMutations } from "vuex";
-import HelpModal from "@/components/modals/HelpModal";
+import PicturePreviewModal from "@/components/modals/PicturePreviewModal";
 
 export const helpModal = {
   methods: {
     ...mapMutations('modals', [
       'openModal'
     ]),
-    openHelpModal (params) {
+    openPicturePreview (params) {
       this.openModal({
-        component: HelpModal,
+        component: PicturePreviewModal,
         params
       })
     }

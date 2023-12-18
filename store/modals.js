@@ -28,7 +28,6 @@ const mutations = {
       state.modals = { ...state.modals }
   },
   openModal: (state, { component, params }) => {
-    console.log('openModal executeing')
     const hash = genHash()
     state.modals[hash] = {
       component,
