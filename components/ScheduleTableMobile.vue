@@ -64,12 +64,12 @@ export default {
       default: () => []
     }
   },
-  data () {
-    return {
-      timetable: daysOfWeek.map(day => ({
-        name: day,
-        times: times
-      }))
+  computed: {
+    timetable () {
+      return daysOfWeek.map(day => ({
+          name: day,
+          times: times
+        }))
     }
   }
 }
