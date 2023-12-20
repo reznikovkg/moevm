@@ -1,36 +1,32 @@
 <template>
   <div class="schedule">
-    <table class="schedule__table">
-      <tbody
-      v-for="(day, index) in timetable"
+    <div
+      v-for="(day, dayIndex) in timetable"
       :key="day.name"
       class="schedule__day"
-      >
-        <tr class="schedule__day-header">
-          <th colspan="2">
-            {{ day.name }}
-          </th>
-        </tr>
-        <tr
-        v-for="(time, d) in day.items"
-        :key="d"
+    >
+      <div class="schedule__day-header">
+        {{ day.name }}
+      </div>
+      <div
+        v-for="(time, timeIndex) in day.times"
+        :key="timeIndex"
         class="schedule__time-slot"
-        >
-          <td class="schedule__time">
-            {{ time }}
-          </td>
-          <td class="schedule__day-card">
-            <DayCard
+      >
+        <div class="schedule__time">
+          {{ time }}
+        </div>
+        <div class="schedule__day-card">
+          <DayCard
             :day="day.name"
             :time="time"
-            :rawIndex="d"
-            :columnIndex="index"
+            :rawIndex="timeIndex"
+            :columnIndex="dayIndex"
             :schedule="schedule"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -72,7 +68,7 @@ export default {
     return {
       timetable: daysOfWeek.map(day => ({
         name: day,
-        items: times
+        times: times
       }))
     }
   }
@@ -81,21 +77,40 @@ export default {
 
 <style lang="less" scoped>
 .schedule {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  border: 1px solid #000000;
+  background-color: #000000;
 
-  &__table {
-    width: 100%;
-    border-collapse: collapse;
+  &__day {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto repeat(7, 1fr);
+    border: 1px solid #000000;
+    gap: 1px;
+    background-color: #000000;
   }
 
   &__day-header {
-    border: 1px solid #000;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    background-color: #f2f2f2;
     padding: 8px;
     text-align: left;
-    background-color: #f2f2f2;
+  }
+
+  &__time-slot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    border: 1px solid #000000;
+    gap: 1px;
+    background-color: #000000;
   }
 
   &__time, &__day-card {
-    border: 1px solid #000;
+    background-color: #ffffff;
     padding: 8px;
     text-align: left;
   }
