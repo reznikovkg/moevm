@@ -157,10 +157,10 @@ export default {
     },
     decan () {
       return {
-        code: 'chupandina',
-        name: 'Чупандина Елена Евгеньевна',
-        cover: require('~/assets/images/cel.jpeg'),
-        position: 'Декан',
+        code: 'abr',
+        name: 'Абрамов Геннадий Владимирович',
+        cover: require('~/assets/images/abr.png'),
+        position: 'Заведующий',
         quote: 'Быть лучшими во всем!'
       }
     },

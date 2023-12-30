@@ -76,7 +76,7 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(33, 117, 136, 0.35);
+      background-color: rgba(124, 130, 131, 0.35);
     }
 
     &:hover {
@@ -131,7 +131,7 @@ export default {
       height: 90px;
 
       &__background {
-        background-color: rgba(68, 220, 255, 0.1);
+        background-color: rgba(124, 130, 131, 0.1);
       }
     }
 

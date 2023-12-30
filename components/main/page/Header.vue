@@ -3,9 +3,17 @@
     <div class="header__top main-container">
       <NuxtLink to="/">
         <div class="header__left">
-          <LogoIcon class="header__logo" />
+          <img class="header__logo-vsu sm-m" :src="require('~/assets/images/moevm.svg')" alt="">
           <h3 class="header__title">
-            <span class="header__title__sub">Фарм</span>ацевтический <br><span class="header__title__sub">фак</span>ультет
+            <span class="header__title__sub">Кафедра</span> <br>
+            МАТЕМАТИЧЕСКОГО <br>
+            ОБЕСПЕЧЕНИЯ ЭВМ
+          </h3>
+          <img v-show="!clicked" class="header__logo-vsu sm-m" :src="require('~/assets/images/amm.gif')" alt="">
+          <h3 v-show="!clicked" class="header__title sm-m header__title--small">
+            Факультет<br>
+            ПРИКЛАДНОЙ МАТЕМАТИКИ,<br>
+            ИНФОРМАТИК И МЕХАНИКИ
           </h3>
           <img v-show="!clicked" class="header__logo-vsu sm-m" :src="require('~/assets/images/vsu.png')" alt="">
           <h3 v-show="!clicked" class="header__title sm-m">
@@ -23,8 +31,8 @@
     <div class="header__cards main-container">
       <CategoryCard
         :category="{
-          title: 'Факультет',
-          image: require('~/assets/images/category4.jpeg'),
+          title: 'Кафедра',
+          image: require('~/assets/images/category9.jpeg'),
           content: category1
         }"
         :expanded="clicked"
@@ -32,7 +40,7 @@
       <CategoryCard
         :category="{
           title: 'Наука',
-          image: require('~/assets/images/category1.jpeg'),
+          image: require('~/assets/images/category7.jpeg'),
           content: category3
         }"
         :expanded="clicked"
@@ -40,7 +48,7 @@
       <CategoryCard
         :category="{
           title: 'Образование',
-          image: require('~/assets/images/category3.jpeg'),
+          image: require('~/assets/images/category6.jpeg'),
           content: category2
         }"
         :expanded="clicked"
@@ -48,7 +56,7 @@
       <CategoryCard
         :category="{
           title: 'Прочее',
-          image: require('~/assets/images/category5.jpeg'),
+          image: require('~/assets/images/category8.jpeg'),
           content: category4
         }"
         :expanded="clicked"
@@ -96,13 +104,13 @@ export default {
           route: { path: '/history' }
         },
         {
-          label: 'Структура',
-        },
-        {
           label: 'Деканат',
         },
         {
-          label: 'Кафедры',
+          label: 'Факультет',
+        },
+        {
+          label: 'Преподаватели',
         },
         {
           label: 'Пресса',
@@ -123,12 +131,6 @@ export default {
         },
         {
           label: 'Образовательные программы',
-        },
-        {
-          label: 'СПО',
-        },
-        {
-          label: 'Ординатура',
         },
         {
           label: 'Аспирантура',
@@ -186,12 +188,6 @@ export default {
         },
         {
           label: 'Сотрудничество',
-        },
-        {
-          label: 'Форум',
-        },
-        {
-          label: 'Ссылки',
         },
       ]
     },
@@ -285,6 +281,10 @@ export default {
     vertical-align: middle;
     margin: 0;
     font-family: @ffMontserrat;
+
+    &--small {
+      font-size: 20px;
+    }
 
     @media screen and (max-width: @sizeMd) {
       font-size: 12px;
