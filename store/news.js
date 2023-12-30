@@ -1,3 +1,5 @@
+import api from "@/services/api";
+
 const state = {
   news: [
     {
@@ -30,7 +32,7 @@ const state = {
 const getters = {
   getNews: state => state.news,
   getNewsByFilter: state => ({field, value}) => state.news.filter(news => news[field] === value),
-  getNewsByUuid: state => uuid => state.news.find(news => news.uuid === uuid),
+  getNewsById: state => uuid => state.news.find(news => news.id === uuid),
   getNewsByTitle: state => title => state.news.find(news => news.title === title)
 }
 
@@ -43,13 +45,20 @@ const mutations = {
     if (i !== -1) {
       state.news.splice(i, 1, payload)
     }
+  },
+  setNews: (state, payload) => {
+    state.news = payload
   }
 }
 
 const actions = {
   fetchNews: ({commit, dispatch}, payload) => new Promise((resolve, reject) => {
-    // make request
-    commit('addNews', payload)
+    // TODO
+    api.client.$get('/moevm/news/list')
+      .then((response) => {
+        console.log(response)
+        commit('setNews', response.news)
+      })
     return resolve()
   }),
   updateNews: (store, payload) => new Promise((resolve, reject) => {

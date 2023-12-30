@@ -62,6 +62,7 @@ import CategoryCard from '@/components/CategoryCard.vue'
 import SearchIcon from '@/components/main/icons/SearchIcon.vue'
 import MenuIcon from '@/components/main/icons/MenuIcon.vue'
 import LogoIcon from '@/components/main/icons/LogoIcon.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: "Header",
@@ -111,6 +112,7 @@ export default {
         },
         {
           label: 'Новости',
+          route: { path: '/news' }
         },
       ]
     },
@@ -208,7 +210,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions('news', [
+      'fetchNews'
+    ]),
     toggleHandler () {
+      this.fetchNews()
       this.clicked = !this.clicked
     }
   }
@@ -229,6 +235,7 @@ export default {
   transition: 0.2s;
   padding: 12px 0;
   margin-bottom: 12px;
+  overflow: hidden;
 
   &__top {
     display: flex;

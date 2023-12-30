@@ -44,6 +44,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/components',
+    '@/plugins/axios',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,6 +56,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/style-resources'
   ],
 

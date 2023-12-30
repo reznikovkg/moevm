@@ -2,8 +2,14 @@
   <div v-if="article" class="article-card" :style="style">
     <div class="article-card__wrapper">
       <div class="article-card__header">
-        <span class="article-card__datetime">{{ article.date }}</span>
-        <Badge :color="category">{{ article.category }}</Badge>
+        <span v-if="article.date" class="article-card__datetime">{{ article.date }}</span>
+        <div v-if="article.category">
+          <Badge
+            v-for="(c, index) in article.category"
+            :key="index"
+            :color="c.color"
+          >{{ c.name }}</Badge>
+        </div>
       </div>
       <div class="article-card__content">
         <h3 class="article-card__title">{{ article.title }}</h3>
@@ -40,19 +46,6 @@ export default {
       return {
         backgroundImage: `url(${this.article.cover})`
       }
-    },
-    category () {
-      if (!this.article) {
-        return ''
-      }
-      switch (this.article.category) {
-        case CATEGORIES.ADVS:
-          return '#00f8ff'
-        case CATEGORIES.NEWS:
-          return '#00ff8c'
-        default:
-          return ''
-      }
     }
   }
 }
@@ -71,6 +64,10 @@ export default {
   &__wrapper {
     background: rgba(0, 0, 0, 0.25);
     padding: 18px 22px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__header {
@@ -84,7 +81,6 @@ export default {
   }
 
   &__content {
-    margin-top: 110px;
   }
 
   &__title {

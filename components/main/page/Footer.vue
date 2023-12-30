@@ -23,7 +23,7 @@
             <div class="footer__link">Кафедры</div>
             <div class="footer__link">Пресса</div>
             <div class="footer__link">Жизнь</div>
-            <div class="footer__link">Новости</div>
+            <div><NuxtLink to="/news" class="footer__link">Новости</NuxtLink></div>
           </div>
         </div>
         <div class="footer__column">
@@ -87,6 +87,7 @@ export default {
 
 <style scoped lang="less">
 .footer {
+  margin-top: 24px;
   padding: 40px 12px;
   font-family: @ffMontserrat;
 

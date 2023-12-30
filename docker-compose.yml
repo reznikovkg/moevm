@@ -4,11 +4,12 @@ services:
     nuxt:
         build: ./
         ports:
-            - "9999:3000"
+            - "9997:3000"
         volumes:
             - ./components:/app/components
             - ./assets:/app/assets
             - ./store:/app/store
             - ./plugins:/app/plugins
             - ./static:/app/static
+            - ./services:/app/services
             - ./nuxt.config.js:/app/nuxt.config.js

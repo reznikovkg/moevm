@@ -18,19 +18,21 @@
 
     <h2>Последние новости</h2>
     <div class="news">
-      <ArticleCard v-for="(i, index) in newsAll" :article="i" :key="index" />
+      <NuxtLink v-for="(i, index) in newsAll" :key="index" :to="{ name: 'news-id', params: { id: i.id } }">
+        <ArticleCard :article="i" />
+      </NuxtLink>
     </div>
 
     <Separator />
 
-    <h2>Мероприятия</h2>
-    <el-carousel :autoplay="false" :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="i in news" :key="i.cover">
-        <ArticleCard :article="i" />
-      </el-carousel-item>
-    </el-carousel>
+<!--    <h2>Мероприятия</h2>-->
+<!--    <el-carousel :autoplay="false" :interval="4000" type="card" height="200px">-->
+<!--      <el-carousel-item v-for="i in news" :key="i.cover">-->
+<!--        <ArticleCard :article="i" />-->
+<!--      </el-carousel-item>-->
+<!--    </el-carousel>-->
 
-    <Separator />
+<!--    <Separator />-->
 
     <div class="d-flex fd-col-mobile" style="gap: 40px">
       <div class="flex-1">
@@ -126,7 +128,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCard, { CATEGORIES } from '@/components/main/cards/ArticleCard.vue';
 import ListFaq from '@/components/parts/faq/ListFaq.vue';
 import TeacherCard from "@/components/main/cards/TeacherCard"
@@ -163,37 +165,7 @@ export default {
       }
     },
     newsAll () {
-      return [
-        {
-          title: 'Собрание студентов',
-          category: 'Объявления',
-          cover: 'http://www.pharm.vsu.ru/pict/olymp20181.jpg',
-          date: 'Сегодня в 12:10'
-        },
-        {
-          title: 'Встреча с деканом',
-          category: 'Новости',
-          cover: 'http://www.pharm.vsu.ru/pict/olymp_f_20172.jpg',
-          date: 'Вчера в 16:00'
-        },
-        {
-          title: 'Набор на практику',
-          category: 'Новости',
-          cover: 'http://www.pharm.vsu.ru/pict/olymp20172.jpg',
-          date: '21 ноября в 16:00'
-        },
-        {
-          title: 'Итоги олимпиады',
-          category: 'Объявления',
-          cover: 'http://www.pharm.vsu.ru/pict/tula2.jpg',
-          date: '5 ноября в 16:00'
-        },
-        {
-          title: 'В ногу со временем',
-          category: 'Объявления',
-          cover: 'http://www.pharm.vsu.ru/pict/olymp20171.jpg'
-        },
-      ]
+      return this.getNews
     },
     teachers () {
       return [
@@ -230,6 +202,14 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.fetchNews()
+  },
+  methods: {
+    ...mapActions('news', [
+      'fetchNews'
+    ])
+  }
 }
 </script>
 
